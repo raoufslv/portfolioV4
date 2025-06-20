@@ -63,7 +63,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-light-200 dark:bg-dark-500">
+    <section id="projects" className="py-20">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section">
         <SectionHeader title={t('projects.title')} subtitle={t('projects.subtitle')} />
 
@@ -350,6 +350,9 @@ import MGV8 from "@/assets/images/MGV pics/Card-dark.png";
 import MGV9 from "@/assets/images/MGV pics/question-light.png";
 import MGV10 from "@/assets/images/MGV pics/question-dark.png";
 
+import TixNovaApp2 from "@/assets/images/TixNova pics/tixnova-app.png";
+import TixNovaApp from "@/assets/images/TixNova pics/tixnova-app2.png";
+
 const projects: Project[] = [
   {
     id: 1,
@@ -518,5 +521,18 @@ const projects: Project[] = [
     categories: ['mobile'],
     technologies: ['Flutter', 'Dart'],
     codeUrl: 'https://github.com/raoufslv/bastionApp'
+  },
+  {
+    id: 15,
+    title: 'TixNova',
+    description: "A mobile app for managing electronic tickets securely using blockchain technology. Built with React Native, it integrates smart contracts deployed via Hardhat on Ethereum, with Web3 wallet support (MetaMask).",
+    headerImage: TixNovaApp, // Remplace par le nom réel de l’image importée
+    images: [
+      TixNovaApp, TixNovaApp2 // Remplace ou ajuste selon les images disponibles
+    ],
+    categories: ['mobile', 'blockchain'],
+    technologies: ['React Native', 'Solidity', 'Hardhat', 'Ethereum', 'MetaMask', 'Web3.js'],
+    demoUrl: 'https://www.linkedin.com/posts/wissam-kerrouche-33aa8823b_blockchain-nft-web3-ugcPost-7339238696212131843-Nf_A?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD1Jqu8BGVDeyvbOKNAIks3sGDZdabt3WZY', // Modifie selon ton site réel
+    codeUrl: 'https://www-apps.univ-lehavre.fr/forge/tpe-tixnova' // Modifie selon ton repo réel
   }
 ];

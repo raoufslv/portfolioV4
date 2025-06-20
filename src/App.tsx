@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
 import './i18n/config';
+import { TracingBeam } from './components/ui/tracing-beam';
 
 function App() {
   const { i18n } = useTranslation();
@@ -25,11 +26,16 @@ function App() {
         <Navbar />
         <main>
           <Hero />
-          <AboutChatBot />
-          <Skills />
-          <Projects />
-          <Resume />
-          <Contact />
+          <TracingBeam className="">
+            <div className="antialiased pt-4 relative h-full">
+
+              <AboutChatBot />
+              <Skills />
+              <Projects />
+              <Resume />
+              <Contact />
+            </div>
+          </TracingBeam>
         </main>
         <Footer />
       </div>

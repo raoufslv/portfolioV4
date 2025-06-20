@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-light-100 dark:bg-dark-600 pt-12 pb-6">
+    <footer className="bg-light-100 dark:bg-dark-600 pt-12 pb-6 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center border-b border-light-300 dark:border-dark-400 pb-8">
           {/* Logo */}

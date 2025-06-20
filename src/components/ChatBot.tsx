@@ -126,7 +126,7 @@ export default function AboutChatBot() {
     };
 
     return (
-        <section id="about" className="py-20 bg-light-200 dark:bg-dark-500">
+        <section id="about" className="py-20 ">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionHeader title={t('about.title')} subtitle={t('about.subtitle')} />
                 <motion.div

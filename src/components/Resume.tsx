@@ -48,7 +48,7 @@ const Resume: React.FC = () => {
   };
 
   return (
-    <section id="resume" className="py-20 bg-light-100 dark:bg-dark-600">
+    <section id="resume" className="py-20 bg-light-200 dark:bg-dark-500">
       <div className="container  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section">
         <SectionHeader title={t('resume.title')} subtitle={t('resume.subtitle')} />
         <motion.div
@@ -74,7 +74,7 @@ const Resume: React.FC = () => {
                 >
                   <div className="absolute -left-[41px] bg-primary-600 dark:bg-primary-400 w-5 h-5 rounded-full border-4 border-light-100 dark:border-dark-600" />
 
-                  <div className="bg-light-200 dark:bg-dark-500 p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <div className="bg-light-100 dark:bg-dark-600 p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <span className="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 text-xs font-medium rounded-full mb-2">
                       {item.period}
                     </span>
@@ -103,7 +103,7 @@ const Resume: React.FC = () => {
                 >
                   <div className="absolute -left-[41px] bg-secondary-600 dark:bg-secondary-400 w-5 h-5 rounded-full border-4 border-light-100 dark:border-dark-600" />
 
-                  <div className="bg-light-200 dark:bg-dark-500 p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <div className="bg-light-100 dark:bg-dark-600 p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <span className="inline-block px-3 py-1 bg-secondary-100 dark:bg-secondary-900/20 text-secondary-600 dark:text-secondary-400 text-xs font-medium rounded-full mb-2">
                       {item.period}
                     </span>

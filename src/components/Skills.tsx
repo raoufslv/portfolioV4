@@ -9,8 +9,9 @@ import {
   SiMysql, SiMongodb, SiPostgresql, SiRedis, SiDocker, SiGit, SiGithubactions, SiLinux,
   SiFlutter, SiDart, SiAndroidstudio, SiPython,
   SiPytorch, SiTensorflow, SiOpencv, SiScikitlearn,
-  SiFigma, SiPostman, SiFastapi 
+  SiFigma, SiPostman, SiFastapi
 } from 'react-icons/si';
+import { GlowingEffect } from "./ui/glowing-effect";
 
 interface Skill {
   name: string;
@@ -122,7 +123,7 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-light-100 dark:bg-dark-600">
+    <section id="skills" className="py-20">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section">
         <SectionHeader title={t('skills.title')} subtitle={t('skills.subtitle')} />
 
@@ -137,8 +138,16 @@ const Skills: React.FC = () => {
             <motion.div
               key={categoryIndex}
               variants={itemVariants}
-              className="bg-light-200 dark:bg-dark-500 p-6 rounded-lg shadow-md"
+              className="relative bg-light-100 dark:bg-dark-600 p-6 rounded-lg shadow-md"
             >
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+              />
+
               <h3 className="text-xl font-semibold mb-6 text-primary-600 dark:text-primary-400">
                 {t(category.translationKey)}
               </h3>

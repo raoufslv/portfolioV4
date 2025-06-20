@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-light-200 dark:bg-dark-500">
+    <section id="contact" className="py-20 ">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section">
         <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
 

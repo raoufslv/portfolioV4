@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
             duration={500}
             className="text-xl sm:text-2xl font-bold cursor-pointer transition-colors text-primary-600 dark:text-primary-400"
           >
-            Raouf<span className="text-secondary-600 dark:text-secondary-400">.dev</span>
+            Raouf<span className="text-secondary-600 dark:text-secondary-400">.Abdallah</span>
           </Link>
 
           {/* Desktop Navigation */}
