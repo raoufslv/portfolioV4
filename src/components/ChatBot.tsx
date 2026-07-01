@@ -110,16 +110,33 @@ export default function AboutChatBot() {
                     Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
                 },
                 body: JSON.stringify({
-                    model: "google/gemini-2.0-flash-lite-001",
+                    model: import.meta.env.VITE_OPENROUTER_MODEL ?? "google/gemma-4-31b-it:free",
                     messages: [systemMessage, ...updatedMessages],
                 }),
             });
 
             const data = await response.json();
-            const botMessage = data.choices[0].message;
+
+            if (!response.ok) {
+                throw new Error(data.error?.message ?? "OpenRouter API error");
+            }
+
+            const botMessage = data.choices?.[0]?.message;
+            if (!botMessage) {
+                throw new Error("Invalid response from OpenRouter");
+            }
+
             setMessages((prev) => [...prev, botMessage]);
         } catch (error) {
             console.error("Error fetching response:", error);
+            setMessages((prev) => [
+                ...prev,
+                {
+                    role: "assistant",
+                    content:
+                        "Sorry, I'm having trouble responding right now. Please try again in a moment or contact Raouf directly at devcode.raouf@gmail.com.",
+                },
+            ]);
         } finally {
             setLoading(false);
         }
