@@ -40,16 +40,16 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 lg:pt-24 relative z-10">
         <motion.div
           className="flex flex-col items-center text-center max-w-3xl mx-auto"
-          variants={containerVariants}
           initial="hidden"
           animate="visible"
+          variants={containerVariants}
         >
           <LampContainer className="">
-
-            {/* Hero Content */}
             <motion.p
               className="text-lg md:text-xl mb-2 text-primary-600 dark:text-primary-400 font-medium"
               variants={itemVariants}
+              initial="visible"
+              animate="visible"
             >
               {t('hero.greeting')}
             </motion.p>
@@ -57,6 +57,8 @@ const Hero: React.FC = () => {
             <motion.h1
               className="text-3xl sm:text-4xl md:text-6xl font-bold mb-2"
               variants={itemVariants}
+              initial="visible"
+              animate="visible"
             >
               {t('hero.name')}
             </motion.h1>
@@ -64,6 +66,8 @@ const Hero: React.FC = () => {
             <motion.h2
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-secondary-600 dark:text-secondary-400"
               variants={itemVariants}
+              initial="visible"
+              animate="visible"
             >
               {t('hero.title')}
             </motion.h2>
@@ -71,6 +75,8 @@ const Hero: React.FC = () => {
             <motion.p
               className="text-sm sm:text-base md:text-lg mb-8 max-w-2xl text-dark-400 dark:text-light-300"
               variants={itemVariants}
+              initial="visible"
+              animate="visible"
             >
               {t('hero.description')}
             </motion.p>
@@ -78,6 +84,8 @@ const Hero: React.FC = () => {
             <motion.div
               className="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto justify-center items-center"
               variants={itemVariants}
+              initial="visible"
+              animate="visible"
             >
               <Link
                 to="projects"
@@ -105,6 +113,8 @@ const Hero: React.FC = () => {
             <motion.div
               className="flex flex-wrap justify-center gap-4 mb-12"
               variants={itemVariants}
+              initial="visible"
+              animate="visible"
             >
               <a
                 href="https://github.com/raoufslv"

@@ -24,7 +24,7 @@ const Projects: React.FC = () => {
     threshold: 0.1
   });
 
-  const [activeFilter, setActiveFilter] = useState('web');
+  const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<null | number>(null);
 
@@ -355,6 +355,16 @@ import TixNovaApp from "@/assets/images/TixNova pics/tixnova-app2.png";
 
 const projects: Project[] = [
   {
+    id: 0,
+    title: 'Rakoono',
+    description: 'AI-powered EdTech SaaS at Station F — conversational coaching, multi-agent workflows and fullstack product (Next.js, TypeScript, Supabase, Clerk).',
+    headerImage: thumpnail,
+    images: [portfolio],
+    categories: ['web', 'ai'],
+    technologies: ['Next.js', 'TypeScript', 'React', 'Supabase', 'Vercel AI SDK', 'Playwright'],
+    demoUrl: 'https://www.linkedin.com/company/rakoono',
+  },
+  {
     id: 1,
     title: 'CGVortex',
     description: 'A marketplace for 3D add-ons, built with the MERN stack and tailwind.',
@@ -426,16 +436,16 @@ const projects: Project[] = [
   },
   {
     id: 6,
-    title: 'Portfolio',
-    description: 'My old portfolio website, showcasing my work and skills at the time built with React & tailwind.',
+    title: 'Portfolio V4',
+    description: 'This portfolio — React, TypeScript, Tailwind, Framer Motion and an AI assistant powered by OpenRouter.',
     headerImage: thumpnail,
     images: [
       portfolio
     ],
-    categories: ['web'],
-    technologies: ['React', 'Tailwind CSS'],
-    demoUrl: 'https://raouf-abdallah.netlify.app',
-    codeUrl: 'https://github.com/raoufslv/portfolioV2'
+    categories: ['web', 'ai'],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'OpenRouter'],
+    demoUrl: 'https://raoufabdallah.me',
+    codeUrl: 'https://github.com/raoufslv/portfolioV4'
   },
   {
     id: 7,
