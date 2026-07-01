@@ -11,8 +11,8 @@ export default {
     // Hero Section
     'hero.greeting': 'Bonjour, je suis',
     'hero.name': 'Raouf Abdallah',
-    'hero.title': 'Développeur Full Stack',
-    'hero.description': 'Je crée des applications web réactives et conviviales en mettant l\'accent sur les performances et l\'évolutivité.',
+    'hero.title': 'Ingénieur Logiciel Fullstack',
+    'hero.description': 'Je construis des produits web en production de bout en bout — React, Next.js, TypeScript, APIs, data et IA. Actuellement chez Rakoono, Paris.',
     'hero.cta': 'Voir Mes Projets',
     'hero.contact': 'Me Contacter',
 
@@ -20,7 +20,7 @@ export default {
     'about.title': 'À Propos',
     'about.subtitle': 'Mon Parcours',
     'about.description1': 'Demandez à mon assistant IA',
-    'about.description2': 'Salut ! Je suis l\'assistant IA d\'Abderraouf 👨‍💻 — ici pour vous aider à en savoir plus sur son travail, ses compétences et ses projets. Demandez-moi n\'importe quoi !',
+    'about.description2': 'Salut ! Je suis l\'assistant IA de Raouf 👨‍💻 — posez-moi des questions sur son expérience chez Rakoono, sa stack (Next.js, TypeScript, IA), ses projets ou son parcours.',
     'about.sendButton': 'Envoyer',
     'about.chatPlaceholder': 'Demandez les compétences, les projets ou l\'expérience d\'Abderraouf...',
     // Skills Section
@@ -30,8 +30,8 @@ export default {
     'skills.backend': 'Backend',
     'skills.mobile': 'Mobile',
     'skills.database': 'Base de données',
-    'skills.ai': 'Frameworks IA/ML',
-    'skills.tools': 'Outils & Autres',
+    'skills.ai': 'IA & Automatisation',
+    'skills.tools': 'DevOps & Qualité',
 
     // Projects Section
     'projects.title': 'Projets',
@@ -54,66 +54,66 @@ export default {
     'resume.timeline': [
       {
         "id": 1,
-        "title": "Développeur Full-Stack",
-        "organization": "Ronin Tek",
-        "period": "Mar 2024 – Août 2024",
-        "description": "Développement d'applications web full-stack avec React, Node.js et MongoDB. Gestion d'hébergement VPS via SSH avec Docker et pipelines CI/CD (GitHub Actions). Implémentation d'authentification utilisateur et tableaux de bord admin.",
+        "title": "Ingénieur Logiciel Fullstack — IA & Produit",
+        "organization": "Rakoono — Paris, France",
+        "period": "Juil. 2025 – Présent",
+        "description": "Développement d'applications web fullstack (Next.js, TypeScript, React, Tailwind). Architectures multi-agents IA (Vercel AI SDK). Features end-to-end : data, API REST, UI, tests (Vitest/Playwright) et CI/CD avec Supabase, Neon et Clerk.",
         "type": "experience"
       },
       {
         "id": 2,
-        "title": "Stagiaire IA & Logiciel",
-        "organization": "Sonatrach",
-        "period": "Jan 2024 – Juin 2024",
-        "description": "Optimisation du modèle YOLOv5 pour la détection d'incendies (vision par ordinateur). Création d'un système de surveillance vidéo intelligent en Python et développement d'une application mobile pour la gestion d'e-tickets.",
+        "title": "Développeur Full-Stack",
+        "organization": "Ronin Tek — Alger, Algérie",
+        "period": "Mar 2024 – Sep 2024",
+        "description": "Applications web et API REST avec React, Node.js/Express, JWT/OAuth, MongoDB et Redis. Déploiement VPS avec Docker et CI/CD GitHub Actions.",
         "type": "experience"
       },
-      // {
-      //   "id": 3,
-      //   "title": "Développeur Web Freelance",
-      //   "organization": "Auto-entrepreneur",
-      //   "period": "2022 – 2023",
-      //   "description": "Réalisation de divers projets clients de façon indépendante. Utilisation de stacks modernes comme React, Node.js et outils CMS. Adaptation constante aux nouvelles technologies et tendances.",
-      //   "type": "experience"
-      // },
-      // {
-      //   "id": 4,
-      //   "title": "Membre Développeur",
-      //   "organization": "Micro Club, USTHB",
-      //   "period": "2021 – 2024",
-      //   "description": "Participation à des projets de club, notamment un site web pour hackathon développé avec Next.js, TypeScript et Framer Motion. Développement de compétences en travail d'équipe et communication.",
-      //   "type": "experience"
-      // },
-      // {
-      //   "id": 5,
-      //   "title": "Développeur Hackathon",
-      //   "organization": "USTHB, ESI & autres",
-      //   "period": "2022 – Présent",
-      //   "description": "Création de sites web et applications sous contrainte de temps. Renforcement des compétences en travail d'équipe, résolution rapide de problèmes et utilisation de technologies modernes dans des défis concrets.",
-      //   "type": "experience"
-      // },
+      {
+        "id": 3,
+        "title": "Stagiaire Ingénierie Logiciel & IA",
+        "organization": "Sonatrach — Alger, Algérie",
+        "period": "Jan 2024 – Juin 2024",
+        "description": "Optimisation d'un modèle YOLOv5 pour la détection d'incendies. Système de surveillance vidéo intelligent en Python pour l'analyse en temps réel.",
+        "type": "experience"
+      },
+      {
+        "id": 4,
+        "title": "Stagiaire Développement Web",
+        "organization": "USTHB — Bab Ezzouar, Algérie",
+        "period": "Jan 2022 – Juin 2022",
+        "description": "Plateforme de gestion de logements (annonces, recherche, messagerie). Frontend HTML/CSS/Bootstrap/JS ; backend PHP/MySQL avec WebSockets.",
+        "type": "experience"
+      },
+      {
+        "id": 5,
+        "title": "Master Informatique — Logiciels sûrs",
+        "organization": "Université Paris-Est Créteil (UPEC)",
+        "period": "2025 – Présent",
+        "description": "Ingénierie logicielle avancée, sécurité et qualité des systèmes complexes.",
+        "type": "education"
+      },
       {
         "id": 6,
-        "title": "Master en Informatique – Ingénierie Web (IWOCS)",
+        "title": "Master Informatique — Ingénierie Web (IWOCS)",
         "organization": "Université Le Havre Normandie",
-        "period": "2024 – 2026 (en cours)",
-        "description": "Spécialisation en Web, IoT, systèmes mobiles, sécurité web, Big Data, programmation fonctionnelle et informatique ubiquitaire.",
+        "period": "2024 – 2025",
+        "description": "Web, IoT, mobile, sécurité web, Big Data, programmation fonctionnelle et informatique ubiquitaire.",
         "type": "education"
       },
       {
         "id": 7,
-        "title": "Master en Visual Computing",
-        "organization": "USTHB – Algérie",
+        "title": "Master Informatique Visuelle",
+        "organization": "USTHB — Algérie",
         "period": "2022 – 2024",
-        "description": "Accent sur le traitement d'images, l'apprentissage automatique, la conception de jeux vidéo, la visualisation de grandes données, la communication multimédia et la compression d'images.",
+        "description": "Traitement d'images, machine learning, jeux vidéo, visualisation de données, multimédia et compression.",
         "type": "education"
       },
       {
         "id": 8,
         "title": "Licence en Informatique",
-        "organization": "USTHB – Algérie",
+        "organization": "USTHB — Algérie",
         "period": "2019 – 2022",
-        "description": "Étude des algorithmes, logique, Python, C, Java, PHP, bases de données (SQL), compilation, architecture logicielle et POO.",
+        "description": "Algorithmes, Python, C, Java, PHP, bases SQL, architecture logicielle et POO.",
         "type": "education"
       }
     ],

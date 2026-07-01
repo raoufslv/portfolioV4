@@ -11,8 +11,8 @@ export default {
     // Hero Section
     'hero.greeting': 'Hello, I\'m',
     'hero.name': 'Raouf Abdallah',
-    'hero.title': 'Full Stack Developer',
-    'hero.description': 'Creating responsive and user-friendly web applications with a focus on performance and scalability.',
+    'hero.title': 'Fullstack Software Engineer',
+    'hero.description': 'Building production web products end-to-end — React, Next.js, TypeScript, APIs, data and AI. Currently at Rakoono, Paris.',
     'hero.cta': 'View My Work',
     'hero.contact': 'Contact Me',
 
@@ -20,7 +20,7 @@ export default {
     'about.title': 'About Me',
     'about.subtitle': 'My Background',
     'about.description1': 'Ask My AI Assistant',
-    'about.description2': 'Hey there! I’m Abderraouf’s AI assistant 👨‍💻 — here to help you learn more about his work, skills, and projects. Ask me anything!',
+    'about.description2': 'Hey there! I\'m Raouf\'s AI assistant 👨‍💻 — ask me about his experience at Rakoono, his stack (Next.js, TypeScript, AI), projects, or background.',
     'about.sendButton': 'Send',
     'about.chatPlaceholder': 'Ask about Abderraouf’s skills, projects, or experience...',
 
@@ -31,8 +31,8 @@ export default {
     'skills.backend': 'Backend',
     'skills.mobile': 'Mobile',
     'skills.database': 'Database',
-    'skills.ai': 'AI/ML Frameworks',
-    'skills.tools': 'Tools & Others',
+    'skills.ai': 'AI & Automation',
+    'skills.tools': 'DevOps & Quality',
 
     // Projects Section
     'projects.title': 'Projects',
@@ -55,67 +55,66 @@ export default {
     "resume.timeline": [
       {
         "id": 1,
-        "title": "Full-Stack Developer",
-        "organization": "Ronin Tek",
-        "period": "Mar 2024 – Aug 2024",
-        "description": "Built full-stack web apps using React, Node.js, and MongoDB. Managed VPS hosting via SSH with Docker and CI/CD pipelines (GitHub Actions). Implemented user authentication and admin dashboards.",
+        "title": "Fullstack Software Engineer — AI & Product",
+        "organization": "Rakoono — Paris, France",
+        "period": "Jul 2025 – Present",
+        "description": "Build fullstack web apps with Next.js, TypeScript, React and Tailwind. Design multi-agent AI workflows (Vercel AI SDK). Own features end-to-end: data, API REST, UI, tests (Vitest/Playwright) and CI/CD with Supabase, Neon and Clerk.",
         "type": "experience"
       },
       {
         "id": 2,
-        "title": "AI & Software Intern",
-        "organization": "Sonatrach",
-        "period": "Jan 2024 – Jun 2024",
-        "description": "Optimized YOLOv5 model for fire detection (computer vision). Built a smart video monitoring system in Python and developed a mobile app for e-ticket management.",
+        "title": "Full-Stack Developer",
+        "organization": "Ronin Tek — Alger, Algeria",
+        "period": "Mar 2024 – Sep 2024",
+        "description": "Built full-stack web apps and REST APIs with React, Node.js/Express, JWT/OAuth, MongoDB and Redis. Deployed on VPS with Docker and GitHub Actions CI/CD.",
         "type": "experience"
       },
-      // {
-      //   "id": 3,
-      //   "title": "Freelance Web Developer",
-      //   "organization": "Self-employed",
-      //   "period": "2022 – 2023",
-      //   "description": "Delivered various client projects independently. Worked with modern stacks like React, Node.js, and CMS tools. Focused on adapting to new technologies and trends.",
-      //   "type": "experience"
-      // },
-      // {
-      //   "id": 4,
-      //   "title": "Developer Member",
-      //   "organization": "Micro Club, USTHB",
-      //   "period": "2021 – 2024",
-      //   "description": "Participated in club projects, including a hackathon website built with Next.js, TypeScript, and Framer Motion. Gained teamwork and communication skills.",
-      //   "type": "experience"
-      // },
-      // {
-      //   "id": 5,
-      //   "title": "Hackathon Developer",
-      //   "organization": "USTHB, ESI & others",
-      //   "period": "2022 – Present",
-      //   "description": "Built creative websites and web apps under time pressure. Strengthened teamwork, fast problem-solving, and use of modern tech in real-world challenges.",
-      //   "type": "experience"
-      // },
-
+      {
+        "id": 3,
+        "title": "AI & Software Engineering Intern",
+        "organization": "Sonatrach — Alger, Algeria",
+        "period": "Jan 2024 – Jun 2024",
+        "description": "Optimized a YOLOv5 model for fire detection in computer vision. Built a Python-based intelligent video monitoring system for real-time analysis.",
+        "type": "experience"
+      },
+      {
+        "id": 4,
+        "title": "Web Development Intern",
+        "organization": "USTHB — Bab Ezzouar, Algeria",
+        "period": "Jan 2022 – Jun 2022",
+        "description": "Developed a housing management platform (listings, search, real-time messaging). Frontend with HTML, CSS, Bootstrap, JavaScript and jQuery; backend in PHP/MySQL with WebSockets.",
+        "type": "experience"
+      },
+      {
+        "id": 5,
+        "title": "Master's in Safe Software Engineering",
+        "organization": "Université Paris-Est Créteil (UPEC)",
+        "period": "2025 – 2026",
+        "description": "Advanced software engineering, security and quality in complex systems.",
+        "type": "education"
+      },
       {
         "id": 6,
-        "title": "Master's in Computer Science – Web Engineering (IWOCS)",
+        "title": "Master's in Computer Science — Web Engineering (IWOCS)",
         "organization": "Université Le Havre Normandie",
-        "period": "2024 – 2026 (ongoing)",
-        "description": "Specializing in Web, IoT, mobile systems, web security, Big Data, functional programming, and ubiquitous computing.",
+        "period": "2024 – 2025",
+        "description": "Web, IoT, mobile systems, web security, Big Data, functional programming and ubiquitous computing.",
         "type": "education"
       },
       {
         "id": 7,
         "title": "Master's in Visual Computing",
-        "organization": "USTHB – Algérie",
+        "organization": "USTHB — Algeria",
         "period": "2022 – 2024",
-        "description": "Focus on image processing, machine learning, video game design, large data visualization, multimedia communication, and image compression.",
+        "description": "Image processing, machine learning, video game design, data visualization, multimedia and image compression.",
         "type": "education"
       },
       {
         "id": 8,
         "title": "Bachelor's in Computer Science",
-        "organization": "USTHB – Algérie",
+        "organization": "USTHB — Algeria",
         "period": "2019 – 2022",
-        "description": "Studied algorithms, logic, Python, C, Java, PHP, databases (SQL), compilation, software architecture, and OOP.",
+        "description": "Algorithms, Python, C, Java, PHP, SQL databases, software architecture and OOP.",
         "type": "education"
       }
     ],

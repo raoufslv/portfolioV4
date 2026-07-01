@@ -5,11 +5,13 @@ import { useInView } from 'react-intersection-observer';
 import SectionHeader from './common/SectionHeader';
 import {
   SiReact, SiTypescript, SiHtml5, SiCss3, SiTailwindcss, SiNextdotjs,
-  SiNodedotjs, SiExpress, SiPhp, SiLaravel,
-  SiMysql, SiMongodb, SiPostgresql, SiRedis, SiDocker, SiGit, SiGithubactions, SiLinux,
-  SiFlutter, SiDart, SiAndroidstudio, SiPython,
-  SiPytorch, SiTensorflow, SiOpencv, SiScikitlearn,
-  SiFigma, SiPostman, SiFastapi
+  SiNodedotjs, SiExpress, SiPhp,
+  SiMysql, SiMongodb, SiPostgresql, SiRedis, SiSupabase,
+  SiDocker, SiGit, SiGithubactions, SiLinux,
+  SiFlutter, SiDart,
+  SiPython, SiPytorch, SiOpencv,
+  SiOpenai, SiVercel,
+  SiFigma, SiPostman
 } from 'react-icons/si';
 import { GlowingEffect } from "./ui/glowing-effect";
 
@@ -50,17 +52,19 @@ const Skills: React.FC = () => {
       skills: [
         { name: 'Node.js', icon: <SiNodedotjs className="w-8 h-8" /> },
         { name: 'Express.js', icon: <SiExpress className="w-8 h-8" /> },
+        { name: 'Python', icon: <SiPython className="w-8 h-8" /> },
         { name: 'PHP', icon: <SiPhp className="w-8 h-8" /> },
-        { name: 'Fast API', icon: <SiFastapi className="w-8 h-8" /> },
+        { name: 'REST APIs', icon: <SiPostman className="w-8 h-8" /> },
       ]
     },
     {
       title: 'Database',
       translationKey: 'skills.database',
       skills: [
-        { name: 'MySQL', icon: <SiMysql className="w-8 h-8" /> },
-        { name: 'MongoDB', icon: <SiMongodb className="w-8 h-8" /> },
         { name: 'PostgreSQL', icon: <SiPostgresql className="w-8 h-8" /> },
+        { name: 'Supabase', icon: <SiSupabase className="w-8 h-8" /> },
+        { name: 'MongoDB', icon: <SiMongodb className="w-8 h-8" /> },
+        { name: 'MySQL', icon: <SiMysql className="w-8 h-8" /> },
         { name: 'Redis', icon: <SiRedis className="w-8 h-8" /> }
       ]
     },
@@ -71,30 +75,30 @@ const Skills: React.FC = () => {
         { name: 'React Native', icon: <SiReact className="w-8 h-8" /> },
         { name: 'Flutter', icon: <SiFlutter className="w-8 h-8" /> },
         { name: 'Dart', icon: <SiDart className="w-8 h-8" /> },
-        { name: 'Android Studio', icon: <SiAndroidstudio className="w-8 h-8" /> }
       ]
     },
     {
-      title: 'AI/ML Frameworks',
+      title: 'AI & Automation',
       translationKey: 'skills.ai',
       skills: [
-        { name: 'Python', icon: <SiPython className="w-8 h-8" /> },
+        { name: 'Vercel AI SDK', icon: <SiVercel className="w-8 h-8" /> },
+        { name: 'OpenAI API', icon: <SiOpenai className="w-8 h-8" /> },
         { name: 'PyTorch', icon: <SiPytorch className="w-8 h-8" /> },
-        { name: 'TensorFlow', icon: <SiTensorflow className="w-8 h-8" /> },
         { name: 'OpenCV', icon: <SiOpencv className="w-8 h-8" /> },
-        { name: 'Scikit-learn', icon: <SiScikitlearn className="w-8 h-8" /> }
+        { name: 'Multi-agents', icon: <SiOpenai className="w-8 h-8" /> },
       ]
     },
     {
-      title: 'Other Tools',
+      title: 'DevOps & Quality',
       translationKey: 'skills.tools',
       skills: [
-        { name: 'Figma', icon: <SiFigma className="w-8 h-8" /> },
-        { name: 'Postman', icon: <SiPostman className="w-8 h-8" /> },
         { name: 'Docker', icon: <SiDocker className="w-8 h-8" /> },
         { name: 'Git', icon: <SiGit className="w-8 h-8" /> },
         { name: 'GitHub Actions', icon: <SiGithubactions className="w-8 h-8" /> },
-        { name: 'Linux', icon: <SiLinux className="w-8 h-8" /> }
+        { name: 'Vitest', icon: <SiVercel className="w-8 h-8" /> },
+        { name: 'Playwright', icon: <SiVercel className="w-8 h-8" /> },
+        { name: 'Linux', icon: <SiLinux className="w-8 h-8" /> },
+        { name: 'Figma', icon: <SiFigma className="w-8 h-8" /> },
       ]
     }
   ];
