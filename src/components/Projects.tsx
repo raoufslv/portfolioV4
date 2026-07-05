@@ -27,7 +27,7 @@ const Projects: React.FC = () => {
     threshold: 0.1
   });
 
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('web');
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<null | number>(null);
 
