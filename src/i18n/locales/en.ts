@@ -70,7 +70,7 @@ export default {
         "id": 2,
         "title": "Full-Stack Developer",
         "organization": "Ronin Tek — Alger, Algeria",
-        "period": "Mar 2024 – Sep 2024",
+        "period": "Fév 2024 – Dec 2024",
         "description": "Built full-stack web apps and REST APIs with React, Node.js/Express, JWT/OAuth, MongoDB and Redis. Deployed on VPS with Docker and GitHub Actions CI/CD.",
         "type": "experience"
       },
@@ -78,7 +78,7 @@ export default {
         "id": 3,
         "title": "AI & Software Engineering Intern",
         "organization": "Sonatrach — Alger, Algeria",
-        "period": "Jan 2024 – Jun 2024",
+        "period": "Jan 2023 – Jun 2023",
         "description": "Optimized a YOLOv5 model for fire detection in computer vision. Built a Python-based intelligent video monitoring system for real-time analysis.",
         "type": "experience"
       },

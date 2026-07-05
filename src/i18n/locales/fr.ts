@@ -69,7 +69,7 @@ export default {
         "id": 2,
         "title": "Développeur Full-Stack",
         "organization": "Ronin Tek — Alger, Algérie",
-        "period": "Mar 2024 – Sep 2024",
+        "period": "Fév 2024 – Déc 2024",
         "description": "Applications web et API REST avec React, Node.js/Express, JWT/OAuth, MongoDB et Redis. Déploiement VPS avec Docker et CI/CD GitHub Actions.",
         "type": "experience"
       },
@@ -77,7 +77,7 @@ export default {
         "id": 3,
         "title": "Stagiaire Ingénierie Logiciel & IA",
         "organization": "Sonatrach — Alger, Algérie",
-        "period": "Jan 2024 – Juin 2024",
+        "period": "Jan 2023 – Juin 2023",
         "description": "Optimisation d'un modèle YOLOv5 pour la détection d'incendies. Système de surveillance vidéo intelligent en Python pour l'analyse en temps réel.",
         "type": "experience"
       },
@@ -93,7 +93,7 @@ export default {
         "id": 5,
         "title": "Master Informatique — Logiciels sûrs",
         "organization": "Université Paris-Est Créteil (UPEC)",
-        "period": "2025 – Présent",
+        "period": "2025 – 2026",
         "description": "Ingénierie logicielle avancée, sécurité et qualité des systèmes complexes.",
         "type": "education"
       },
