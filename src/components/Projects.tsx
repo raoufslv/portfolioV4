@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Eye, ExternalLink, Github } from 'lucide-react';
 import SectionHeader from './common/SectionHeader';
+import ProjectPlaceholder from './common/ProjectPlaceholder';
 
 interface Project {
   id: number;
@@ -15,6 +16,8 @@ interface Project {
   technologies: string[];
   demoUrl?: string;
   codeUrl?: string;
+  confidential?: boolean;
+  highlights?: string[];
 }
 
 const Projects: React.FC = () => {
@@ -109,11 +112,15 @@ const Projects: React.FC = () => {
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <div className="relative overflow-hidden h-48">
-                  <img
-                    src={project.headerImage || project.images[0]}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
-                  />
+                  {project.confidential ? (
+                    <ProjectPlaceholder title={project.title} variant="card" />
+                  ) : (
+                    <img
+                      src={project.headerImage || project.images[0]}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+                    />
+                  )}
 
                   {/* Overlay */}
                   <AnimatePresence>
@@ -214,17 +221,32 @@ const Projects: React.FC = () => {
                     </div>
 
                     <div className="max-h-[300px] overflow-y-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
-                      <div className="space-y-4"></div>
-                      {project.images.map((image, index) => (
-                        <div key={index}>
-                          <h1 className="text-lg font-semibold mb-2">page {index + 1}</h1>
-                          <img
-                            src={image}
-                            alt={`${project.title} - image ${index + 1}`}
-                            className="w-full object-cover rounded-lg mb-5 border dark:border-gray-700"
-                          />
+                      {project.confidential ? (
+                        <div className="space-y-4 mb-4">
+                          <ProjectPlaceholder title={project.title} variant="modal" />
+                          {project.highlights && project.highlights.length > 0 && (
+                            <div>
+                              <h4 className="text-lg font-semibold mb-2">{t('projects.confidential.highlights')}</h4>
+                              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                                {project.highlights.map((highlight) => (
+                                  <li key={highlight}>{highlight}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
-                      ))}
+                      ) : (
+                        project.images.map((image, index) => (
+                          <div key={index}>
+                            <h1 className="text-lg font-semibold mb-2">page {index + 1}</h1>
+                            <img
+                              src={image}
+                              alt={`${project.title} - image ${index + 1}`}
+                              className="w-full object-cover rounded-lg mb-5 border dark:border-gray-700"
+                            />
+                          </div>
+                        ))
+                      )}
                     </div>
 
                     <div className="space-y-4">
@@ -358,8 +380,14 @@ const projects: Project[] = [
     id: 0,
     title: 'Rakoono',
     description: 'AI-powered EdTech SaaS at Station F — conversational coaching, multi-agent workflows and fullstack product (Next.js, TypeScript, Supabase, Clerk).',
-    headerImage: thumpnail,
-    images: [portfolio],
+    images: [],
+    confidential: true,
+    highlights: [
+      'Fullstack features end-to-end on a production EdTech platform',
+      'Multi-agent AI workflows and conversational coaching',
+      'Next.js, TypeScript, Supabase, Clerk and Vercel AI SDK',
+      'Automated testing with Playwright and CI/CD delivery',
+    ],
     categories: ['web', 'ai'],
     technologies: ['Next.js', 'TypeScript', 'React', 'Supabase', 'Vercel AI SDK', 'Playwright'],
     demoUrl: 'https://www.linkedin.com/company/rakoono',

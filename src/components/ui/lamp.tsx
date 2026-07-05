@@ -1,75 +1,115 @@
 "use client";
+
 import React from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-export const LampContainer = ({
-  children,
-  className,
-}: {
+const SURFACE = "bg-light-100 dark:bg-dark-600";
+
+const LAMP_ANIMATION = {
+  delay: 0.2,
+  duration: 0.8,
+  ease: "easeInOut" as const,
+};
+
+const BEAM_SIZE =
+  "h-20 w-[10rem] sm:h-24 sm:w-[14rem] md:h-28 md:w-[20rem] lg:h-32 lg:w-[26rem] xl:h-36 xl:w-[32rem]";
+
+const EFFECT_HEIGHT =
+  "h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36";
+
+const CONTENT_TOP_PADDING =
+  "pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32";
+
+type BeamSide = "left" | "right";
+
+interface LampContainerProps {
   children: React.ReactNode;
   className?: string;
-}) => {
+}
+
+function BeamMask({ side }: { side: BeamSide }) {
+  const edgeMask =
+    side === "left"
+      ? "left-0 [mask-image:linear-gradient(to_right,white,transparent)]"
+      : "right-0 [mask-image:linear-gradient(to_left,white,transparent)]";
+
   return (
-    <div
+    <>
+      <div
+        className={cn(
+          "absolute bottom-0 left-0 z-[2] h-20 w-full sm:h-28 lg:h-36",
+          SURFACE,
+          "[mask-image:linear-gradient(to_top,white,transparent)]"
+        )}
+      />
+      <div
+        className={cn(
+          "absolute bottom-0 z-[2] h-full w-14 sm:w-20 lg:w-28",
+          SURFACE,
+          edgeMask
+        )}
+      />
+    </>
+  );
+}
+
+function LampBeam({ side }: { side: BeamSide }) {
+  const isLeft = side === "left";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={LAMP_ANIMATION}
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-light-100 dark:bg-dark-600 w-full rounded-md z-0 pt-44",
-        className
+        "absolute inset-auto overflow-hidden",
+        "bg-[conic-gradient(var(--conic-position),var(--tw-gradient-stops))]",
+        BEAM_SIZE,
+        isLeft
+          ? "right-1/2 from-cyan-500 via-transparent to-light-100 dark:to-dark-600 [--conic-position:from_40deg_at_center_top]"
+          : "left-1/2 from-transparent via-transparent to-cyan-500 [--conic-position:from_320deg_at_center_top]"
       )}
     >
-      <div className="relative flex w-full flex-1 items-center justify-center isolate z-0 2xl:scale-y-150 xl:scale-y-125 lg:scale-y-110 sm:scale-y-100 scale-y-90">
-        <motion.div
-          initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          style={{
-            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-          }}
-          className="absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem] bg-gradient-conic from-cyan-500 via-transparent to-bg-light-100 text-white [--conic-position:from_40deg_at_center_top]"
-        >
-          <div className="absolute  w-[100%] left-0 bg-light-100 dark:bg-dark-600 h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-          <div className="absolute  w-40 h-[100%] left-0 bg-light-100 dark:bg-dark-600  bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          style={{
-            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-          }}
-          className="absolute inset-auto left-1/2 h-56 w-[30rem] bg-gradient-conic from-transparent via-transparent to-cyan-500 text-white [--conic-position:from_320deg_at_center_top]"
-        >
-          <div className="absolute  w-40 h-[100%] right-0 bg-light-100 dark:bg-dark-600  bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
-          <div className="absolute  w-[100%] right-0 bg-light-100 dark:bg-dark-600 h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-        </motion.div>
+      <BeamMask side={side} />
+    </motion.div>
+  );
+}
 
+function LampFade() {
+  return (
+    <div className="absolute inset-x-0 bottom-0 z-[1] h-10 bg-gradient-to-b from-transparent to-light-100 dark:to-dark-600 sm:h-12 md:h-14 lg:h-16" />
+  );
+}
 
-        <motion.div
-          initial={{ width: "15rem" }}
-          whileInView={{ width: "30rem" }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="absolute inset-auto z-50 h-0.5 w-[30rem] -translate-y-[7rem] bg-cyan-400 "
-        ></motion.div>
+function LampEffect() {
+  return (
+    <div className={cn("relative mx-auto w-full max-w-3xl overflow-hidden", EFFECT_HEIGHT)}>
+      <LampBeam side="left" />
+      <LampBeam side="right" />
+      <LampFade />
+    </div>
+  );
+}
 
-        <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-light-100 dark:bg-dark-600 "></div>
+export function LampContainer({ children, className }: LampContainerProps) {
+  return (
+    <div className={cn("relative w-full", className)}>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 mx-auto max-w-3xl overflow-hidden"
+        aria-hidden="true"
+      >
+        <LampEffect />
       </div>
 
-      <div className="relative z-50 flex flex-col items-center -translate-y-24 sm:-translate-y-28 md:-translate-y-32 lg:-translate-y-36 xl:-translate-y-40">
-        {/* Lamp content goes here */}
+      <div
+        className={cn(
+          "relative z-10 flex w-full flex-col items-center text-center",
+          CONTENT_TOP_PADDING
+        )}
+      >
         {children}
       </div>
     </div>
   );
-};
+}

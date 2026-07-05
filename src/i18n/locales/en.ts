@@ -15,6 +15,7 @@ export default {
     'hero.description': 'Building production web products end-to-end — React, Next.js, TypeScript, APIs, data and AI. Currently at Rakoono, Paris.',
     'hero.cta': 'View My Work',
     'hero.contact': 'Contact Me',
+    'hero.scroll': 'Scroll Down',
 
     // About Section
     'about.title': 'About Me',
@@ -46,6 +47,10 @@ export default {
     'projects.viewDemo': 'View Demo',
     'projects.viewCode': 'View Code',
     'projects.details': 'Details',
+    'projects.confidential.title': 'Confidential project',
+    'projects.confidential.description': 'Private product — screenshots not shared.',
+    'projects.confidential.ariaLabel': '{{title}} — confidential project, no screenshots',
+    'projects.confidential.highlights': 'Key contributions',
 
     // Resume Section
     'resume.title': 'Resume',

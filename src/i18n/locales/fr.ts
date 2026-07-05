@@ -15,6 +15,7 @@ export default {
     'hero.description': 'Je construis des produits web en production de bout en bout — React, Next.js, TypeScript, APIs, data et IA. Actuellement chez Rakoono, Paris.',
     'hero.cta': 'Voir Mes Projets',
     'hero.contact': 'Me Contacter',
+    'hero.scroll': 'Défiler',
 
     // About Section
     'about.title': 'À Propos',
@@ -45,6 +46,10 @@ export default {
     'projects.viewDemo': 'Voir Démo',
     'projects.viewCode': 'Voir Code',
     'projects.details': 'Détails',
+    'projects.confidential.title': 'Projet confidentiel',
+    'projects.confidential.description': 'Produit privé — captures non partagées.',
+    'projects.confidential.ariaLabel': '{{title}} — projet confidentiel, sans capture d\'écran',
+    'projects.confidential.highlights': 'Contributions clés',
 
     // Resume Section
     'resume.title': 'CV',

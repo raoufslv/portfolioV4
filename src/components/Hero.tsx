@@ -2,169 +2,133 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { LampContainer } from "./ui/lamp";
+import { ArrowDown, Github, Linkedin, Mail, LucideIcon } from 'lucide-react';
+import { LampContainer } from './ui/lamp';
+
+const SCROLL_LINK_PROPS = {
+  spy: true,
+  smooth: true,
+  offset: -70,
+  duration: 500,
+} as const;
+
+const HERO_CONTENT_ANIMATION = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] },
+};
+
+const SOCIAL_LINKS = [
+  { href: 'https://github.com/raoufslv', label: 'GitHub', icon: Github },
+  { href: 'https://www.linkedin.com/in/raoufslv/', label: 'LinkedIn', icon: Linkedin },
+  { href: 'mailto:devcode.raouf@gmail.com', label: 'Mail', icon: Mail },
+] as const;
+
+const socialLinkClassName =
+  'rounded-full bg-light-300 p-2.5 transition-colors hover:bg-primary-100 hover:text-primary-600 dark:bg-dark-400 dark:hover:bg-primary-900/30 dark:hover:text-primary-400';
+
+function SocialIconLink({ href, label, icon: Icon }: { href: string; label: string; icon: LucideIcon }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={socialLinkClassName} aria-label={label}>
+      <Icon size={20} />
+    </a>
+  );
+}
+
+function HeroCtaButtons({ projectsLabel, contactLabel }: { projectsLabel: string; contactLabel: string }) {
+  return (
+    <div className="mb-8 flex w-full flex-col items-center justify-center gap-3 sm:mb-10 sm:w-auto sm:flex-row sm:gap-4">
+      <Link
+        to="projects"
+        {...SCROLL_LINK_PROPS}
+        className="w-full cursor-pointer rounded-lg bg-primary-600 px-6 py-3 font-medium text-white shadow-md transition-all hover:bg-primary-700 hover:shadow-lg sm:w-auto"
+      >
+        {projectsLabel}
+      </Link>
+      <Link
+        to="contact"
+        {...SCROLL_LINK_PROPS}
+        className="w-full cursor-pointer rounded-lg border border-primary-600 px-6 py-3 font-medium text-primary-600 transition-all hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-900/10 sm:w-auto"
+      >
+        {contactLabel}
+      </Link>
+    </div>
+  );
+}
+
+function HeroSocialLinks() {
+  return (
+    <div className="mb-6 flex flex-wrap justify-center gap-3 sm:mb-8 sm:gap-4">
+      {SOCIAL_LINKS.map((link) => (
+        <SocialIconLink key={link.label} {...link} />
+      ))}
+    </div>
+  );
+}
+
+function HeroScrollHint() {
+  const { t } = useTranslation();
+
+  return (
+    <motion.div
+      className="flex flex-col items-center pb-6 sm:pb-8"
+      animate={{ y: [0, 8, 0] }}
+      transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+    >
+      <Link
+        to="about"
+        {...SCROLL_LINK_PROPS}
+        className="flex cursor-pointer flex-col items-center text-dark-400 transition-colors hover:text-primary-600 dark:text-light-300 dark:hover:text-primary-400"
+      >
+        <span className="mb-2 text-sm font-medium">{t('hero.scroll')}</span>
+        <ArrowDown size={20} />
+      </Link>
+    </motion.div>
+  );
+}
 
 const Hero: React.FC = () => {
   const { t } = useTranslation();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut'
-      }
-    }
-  };
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-light-100 dark:bg-dark-600"
+      className="relative flex min-h-[calc(100svh-4.5rem)] flex-col items-center justify-center overflow-hidden bg-light-100 py-8 dark:bg-dark-600 sm:min-h-[calc(100svh-4rem)]"
     >
+      <div className="container relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <LampContainer>
+          <motion.div
+            className="flex w-full flex-col items-center text-center"
+            {...HERO_CONTENT_ANIMATION}
+          >
+            <motion.div
+              className="mb-3 h-px w-[10rem] bg-cyan-400 sm:mb-4 sm:w-[14rem] md:w-[20rem] lg:w-[26rem] xl:w-[32rem]"
+              initial={{ opacity: 0, scaleX: 0.5 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            />
 
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 lg:pt-24 relative z-10">
-        <motion.div
-          className="flex flex-col items-center text-center max-w-3xl mx-auto"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          <LampContainer className="">
-            <motion.p
-              className="text-lg md:text-xl mb-2 text-primary-600 dark:text-primary-400 font-medium"
-              variants={itemVariants}
-              initial="visible"
-              animate="visible"
-            >
+            <p className="mb-2 text-base font-medium text-primary-600 dark:text-primary-400 sm:text-lg md:text-xl">
               {t('hero.greeting')}
-            </motion.p>
+            </p>
 
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-6xl font-bold mb-2"
-              variants={itemVariants}
-              initial="visible"
-              animate="visible"
-            >
+            <h1 className="mb-2 text-3xl font-bold text-dark-600 dark:text-light-100 sm:text-4xl md:text-5xl lg:text-6xl">
               {t('hero.name')}
-            </motion.h1>
+            </h1>
 
-            <motion.h2
-              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-secondary-600 dark:text-secondary-400"
-              variants={itemVariants}
-              initial="visible"
-              animate="visible"
-            >
+            <h2 className="mb-4 text-lg font-semibold text-secondary-600 dark:text-secondary-400 sm:mb-6 sm:text-xl md:text-2xl lg:text-3xl">
               {t('hero.title')}
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              className="text-sm sm:text-base md:text-lg mb-8 max-w-2xl text-dark-400 dark:text-light-300"
-              variants={itemVariants}
-              initial="visible"
-              animate="visible"
-            >
+            <p className="mb-6 max-w-2xl text-sm text-dark-400 dark:text-light-300 sm:mb-8 sm:text-base md:text-lg">
               {t('hero.description')}
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto justify-center items-center"
-              variants={itemVariants}
-              initial="visible"
-              animate="visible"
-            >
-              <Link
-                to="projects"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer"
-              >
-                {t('hero.cta')}
-              </Link>
-              <Link
-                to="contact"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="px-6 py-3 border border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 font-medium rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/10 transition-all cursor-pointer"
-              >
-                {t('hero.contact')}
-              </Link>
-            </motion.div>
-
-            {/* Social Icons */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-4 mb-12"
-              variants={itemVariants}
-              initial="visible"
-              animate="visible"
-            >
-              <a
-                href="https://github.com/raoufslv"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-light-300 dark:bg-dark-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/raoufslv/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-light-300 dark:bg-dark-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="mailto:devcode.raouf@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-light-300 dark:bg-dark-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="Mail"
-              >
-                <Mail size={20} />
-              </a>
-            </motion.div>
-
-            {/* Scroll Down Indicator */}
-            <motion.div
-              className="absolute bottom-[-4rem] md:bottom-[-2rem] left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-              animate={{ y: [0, 10, 0], x: [-40, -40, -40] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <Link
-                to="about"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="flex flex-col items-center cursor-pointer text-dark-400 dark:text-light-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              >
-                <span className="text-sm font-medium mb-2">Scroll Down</span>
-                <ArrowDown size={20} />
-              </Link>
-            </motion.div>
-          </LampContainer>
-        </motion.div>
+            <HeroCtaButtons projectsLabel={t('hero.cta')} contactLabel={t('hero.contact')} />
+            <HeroSocialLinks />
+            <HeroScrollHint />
+          </motion.div>
+        </LampContainer>
       </div>
     </section>
   );

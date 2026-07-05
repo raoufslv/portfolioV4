@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-scroll';
 import { Menu, X, Moon, Sun, Languages } from 'lucide-react';
@@ -11,11 +11,25 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const languageMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     setIsLanguageOpen(false);
   };
+
+  useEffect(() => {
+    if (!isLanguageOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
+        setIsLanguageOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isLanguageOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -85,7 +99,7 @@ const Navbar: React.FC = () => {
                 offset={-70}
                 duration={500}
                 activeClass="text-primary-600 dark:text-primary-400"
-                className="px-3 py-2 rounded-md text-base font-medium hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer transition-colors"
+                className="px-3 py-2 rounded-md text-base font-medium text-dark-500 hover:text-primary-600 dark:text-light-200 dark:hover:text-primary-400 cursor-pointer transition-colors"
               >
                 {link.name}
               </Link>
@@ -108,11 +122,12 @@ const Navbar: React.FC = () => {
             </button>
 
             {/* Language Selector */}
-            <div className="relative">
+            <div className="relative" ref={languageMenuRef}>
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className="p-2 rounded-full hover:bg-light-300 dark:hover:bg-dark-400 transition-colors flex items-center"
                 aria-label="Change language"
+                aria-expanded={isLanguageOpen}
               >
                 <Languages size={20} />
                 <span className="ml-1 hidden sm:inline">{i18n.language === 'en' ? 'EN' : 'FR'}</span>
@@ -124,7 +139,7 @@ const Navbar: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-2 w-32 bg-light-100 dark:bg-dark-600 rounded-md shadow-lg overflow-hidden z-10"
+                    className="absolute right-0 top-full mt-2 w-36 rounded-md border border-light-300 bg-light-100 shadow-lg dark:border-dark-400 dark:bg-dark-500 z-[60]"
                   >
                     <button
                       onClick={() => toggleLanguage('en')}
