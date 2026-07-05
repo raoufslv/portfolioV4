@@ -375,6 +375,13 @@ import MGV10 from "@/assets/images/MGV pics/question-dark.png";
 import TixNovaApp2 from "@/assets/images/TixNova pics/tixnova-app.png";
 import TixNovaApp from "@/assets/images/TixNova pics/tixnova-app2.png";
 
+import DSADashboard from "@/assets/images/DSA pics/dashboard_full.png";
+import DSAQueryInterface from "@/assets/images/DSA pics/ai_query_interface.png";
+import DSAQueryResult from "@/assets/images/DSA pics/ai_query_result.png";
+import DSAActionsByPlatform from "@/assets/images/DSA pics/actions_by_platform.png";
+import DSAOverviewTimeseries from "@/assets/images/DSA pics/overview_timeseries.png";
+import DSAEuMap from "@/assets/images/DSA pics/eu_map_overview.png";
+
 const projects: Project[] = [
   {
     id: 0,
@@ -391,6 +398,17 @@ const projects: Project[] = [
     categories: ['web', 'ai'],
     technologies: ['Next.js', 'TypeScript', 'React', 'Supabase', 'Vercel AI SDK', 'Playwright'],
     demoUrl: 'https://www.linkedin.com/company/rakoono',
+  },
+  {
+    id: 14,
+    title: 'DSA Transparency Dashboard',
+    description: 'Analytics platform for the EU DSA Transparency Database — Big Data dashboards, NLP natural-language queries (Gemini), ML predictions and monitoring (Grafana, Prometheus). Master 2 Logiciels Sûrs, UPEC.',
+    headerImage: DSADashboard,
+    images: [DSAQueryInterface, DSAQueryResult, DSAActionsByPlatform, DSAOverviewTimeseries, DSAEuMap],
+    categories: ['web', 'ai'],
+    technologies: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'Prisma', 'GCP', 'Gemini', 'Docker'],
+    demoUrl: 'https://www.linkedin.com/posts/raoufslv_tr%C3%A8s-content-de-repartager-ce-projet-sur-ugcPost-7463156950277742592-AsPr/',
+    codeUrl: 'https://github.com/raouf-rak/dsa-dashboard',
   },
   {
     id: 1,
