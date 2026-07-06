@@ -93,43 +93,44 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100svh-4.5rem)] flex-col items-center justify-center overflow-hidden bg-light-100 py-8 dark:bg-dark-600 sm:min-h-[calc(100svh-4rem)]"
+      className="relative grid min-h-[calc(100dvh-4rem)] grid-rows-[1fr_auto_auto] overflow-hidden bg-light-100 dark:bg-dark-600 sm:min-h-[calc(100dvh-4.5rem)]"
     >
-      <div className="container relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <LampContainer>
-          <motion.div
-            className="flex w-full flex-col items-center text-center"
-            {...HERO_CONTENT_ANIMATION}
-          >
-            <motion.div
-              className="mb-3 h-px w-[10rem] bg-cyan-400 sm:mb-4 sm:w-[14rem] md:w-[20rem] lg:w-[26rem] xl:w-[32rem]"
-              initial={{ opacity: 0, scaleX: 0.5 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            />
-
-            <p className="mb-2 text-base font-medium text-primary-600 dark:text-primary-400 sm:text-lg md:text-xl">
+      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="flex w-full max-w-3xl flex-col items-center text-center"
+          {...HERO_CONTENT_ANIMATION}
+        >
+          <LampContainer>
+            <p className="mb-1 text-base font-medium text-primary-600 dark:text-primary-400 sm:mb-2 sm:text-lg md:text-xl">
               {t('hero.greeting')}
             </p>
 
-            <h1 className="mb-2 text-3xl font-bold text-dark-600 dark:text-light-100 sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="mb-2 text-3xl font-bold tracking-tight text-dark-600 dark:text-light-100 sm:text-4xl md:text-5xl lg:text-6xl">
               {t('hero.name')}
             </h1>
 
-            <h2 className="mb-4 text-lg font-semibold text-secondary-600 dark:text-secondary-400 sm:mb-6 sm:text-xl md:text-2xl lg:text-3xl">
+            <h2 className="text-lg font-semibold text-secondary-600 dark:text-secondary-400 sm:text-xl md:text-2xl lg:text-3xl">
               {t('hero.title')}
             </h2>
-
-            <p className="mb-6 max-w-2xl text-sm text-dark-400 dark:text-light-300 sm:mb-8 sm:text-base md:text-lg">
-              {t('hero.description')}
-            </p>
-
-            <HeroCtaButtons projectsLabel={t('hero.cta')} contactLabel={t('hero.contact')} />
-            <HeroSocialLinks />
-            <HeroScrollHint />
-          </motion.div>
-        </LampContainer>
+          </LampContainer>
+        </motion.div>
       </div>
+
+      <motion.div
+        className="flex w-full flex-col items-center px-4 text-center sm:px-6 lg:px-8"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <p className="mb-6 max-w-2xl text-sm text-dark-400 dark:text-light-300 sm:mb-8 sm:text-base md:text-lg">
+          {t('hero.description')}
+        </p>
+
+        <HeroCtaButtons projectsLabel={t('hero.cta')} contactLabel={t('hero.contact')} />
+        <HeroSocialLinks />
+      </motion.div>
+
+      <HeroScrollHint />
     </section>
   );
 };

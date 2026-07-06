@@ -91,7 +91,7 @@ export default {
       },
       {
         "id": 5,
-        "title": "Master Informatique — Logiciels sûrs",
+        "title": "Master 2 Informatique — Logiciels sûrs",
         "organization": "Université Paris-Est Créteil (UPEC)",
         "period": "2025 – 2026",
         "description": "Ingénierie logicielle avancée, sécurité et qualité des systèmes complexes.",
@@ -99,7 +99,7 @@ export default {
       },
       {
         "id": 6,
-        "title": "Master Informatique — Ingénierie Web (IWOCS)",
+        "title": "Master 1 Informatique — Ingénierie Web (IWOCS)",
         "organization": "Université Le Havre Normandie",
         "period": "2024 – 2025",
         "description": "Web, IoT, mobile, sécurité web, Big Data, programmation fonctionnelle et informatique ubiquitaire.",

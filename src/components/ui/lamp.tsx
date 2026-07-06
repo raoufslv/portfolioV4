@@ -18,8 +18,11 @@ const BEAM_SIZE =
 const EFFECT_HEIGHT =
   "h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36";
 
-const CONTENT_TOP_PADDING =
-  "pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32";
+const CONTENT_OVERLAP =
+  "-translate-y-[4.25rem] sm:-translate-y-[5.25rem] md:-translate-y-[6.25rem] lg:-translate-y-[7.25rem] xl:-translate-y-[8.25rem]";
+
+const CONTENT_COLLAPSE =
+  "-mb-[4.25rem] sm:-mb-[5.25rem] md:-mb-[6.25rem] lg:-mb-[7.25rem] xl:-mb-[8.25rem]";
 
 type BeamSide = "left" | "right";
 
@@ -38,14 +41,14 @@ function BeamMask({ side }: { side: BeamSide }) {
     <>
       <div
         className={cn(
-          "absolute bottom-0 left-0 z-[2] h-20 w-full sm:h-28 lg:h-36",
+          "absolute bottom-0 left-0 z-[2] h-full w-full",
           SURFACE,
           "[mask-image:linear-gradient(to_top,white,transparent)]"
         )}
       />
       <div
         className={cn(
-          "absolute bottom-0 z-[2] h-full w-14 sm:w-20 lg:w-28",
+          "absolute bottom-0 z-[2] h-full w-12 sm:w-16 md:w-20 lg:w-28",
           SURFACE,
           edgeMask
         )}
@@ -63,7 +66,7 @@ function LampBeam({ side }: { side: BeamSide }) {
       animate={{ opacity: 1 }}
       transition={LAMP_ANIMATION}
       className={cn(
-        "absolute inset-auto overflow-hidden",
+        "absolute top-0 overflow-hidden",
         "bg-[conic-gradient(var(--conic-position),var(--tw-gradient-stops))]",
         BEAM_SIZE,
         isLeft
@@ -84,7 +87,13 @@ function LampFade() {
 
 function LampEffect() {
   return (
-    <div className={cn("relative mx-auto w-full max-w-3xl overflow-hidden", EFFECT_HEIGHT)}>
+    <div
+      className={cn(
+        "relative mx-auto w-full max-w-3xl overflow-hidden",
+        EFFECT_HEIGHT
+      )}
+      aria-hidden="true"
+    >
       <LampBeam side="left" />
       <LampBeam side="right" />
       <LampFade />
@@ -94,21 +103,19 @@ function LampEffect() {
 
 export function LampContainer({ children, className }: LampContainerProps) {
   return (
-    <div className={cn("relative w-full", className)}>
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 mx-auto max-w-3xl overflow-hidden"
-        aria-hidden="true"
-      >
+    <div className={cn("relative flex w-full flex-col items-center", className)}>
+      <div className="relative isolate flex w-full flex-col items-center">
         <LampEffect />
-      </div>
 
-      <div
-        className={cn(
-          "relative z-10 flex w-full flex-col items-center text-center",
-          CONTENT_TOP_PADDING
-        )}
-      >
-        {children}
+        <div
+          className={cn(
+            "relative z-10 flex w-full flex-col items-center text-center",
+            CONTENT_OVERLAP,
+            CONTENT_COLLAPSE
+          )}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

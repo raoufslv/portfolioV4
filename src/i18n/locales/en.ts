@@ -92,7 +92,7 @@ export default {
       },
       {
         "id": 5,
-        "title": "Master's in Safe Software Engineering",
+        "title": "Master's 2 in Safe Software Engineering",
         "organization": "Université Paris-Est Créteil (UPEC)",
         "period": "2025 – 2026",
         "description": "Advanced software engineering, security and quality in complex systems.",
@@ -100,7 +100,7 @@ export default {
       },
       {
         "id": 6,
-        "title": "Master's in Computer Science — Web Engineering (IWOCS)",
+        "title": "Master's 1 in Computer Science — Web Engineering (IWOCS)",
         "organization": "Université Le Havre Normandie",
         "period": "2024 – 2025",
         "description": "Web, IoT, mobile systems, web security, Big Data, functional programming and ubiquitous computing.",
