@@ -93,15 +93,15 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative grid min-h-[calc(100dvh-4rem)] grid-rows-[1fr_auto_auto] overflow-hidden bg-light-100 dark:bg-dark-600 sm:min-h-[calc(100dvh-4.5rem)]"
+      className="relative flex min-h-[calc(100dvh-4rem)] flex-col overflow-hidden bg-light-100 dark:bg-dark-600 sm:min-h-[calc(100dvh-4.5rem)]"
     >
-      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-1 flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex w-full max-w-3xl flex-col items-center text-center"
           {...HERO_CONTENT_ANIMATION}
         >
           <LampContainer>
-            <p className="mb-1 text-base font-medium text-primary-600 dark:text-primary-400 sm:mb-2 sm:text-lg md:text-xl">
+            <p className="mb-1 pt-2 text-base font-medium text-primary-600 dark:text-primary-400 sm:mb-2 sm:pt-3 sm:text-lg md:pt-4 md:text-xl">
               {t('hero.greeting')}
             </p>
 
@@ -113,22 +113,15 @@ const Hero: React.FC = () => {
               {t('hero.title')}
             </h2>
           </LampContainer>
+
+          <p className="mb-6 mt-4 max-w-2xl text-sm text-dark-400 dark:text-light-300 sm:mb-8 sm:mt-5 sm:text-base md:mt-6 md:text-lg">
+            {t('hero.description')}
+          </p>
+
+          <HeroCtaButtons projectsLabel={t('hero.cta')} contactLabel={t('hero.contact')} />
+          <HeroSocialLinks />
         </motion.div>
       </div>
-
-      <motion.div
-        className="flex w-full flex-col items-center px-4 text-center sm:px-6 lg:px-8"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <p className="mb-6 max-w-2xl text-sm text-dark-400 dark:text-light-300 sm:mb-8 sm:text-base md:text-lg">
-          {t('hero.description')}
-        </p>
-
-        <HeroCtaButtons projectsLabel={t('hero.cta')} contactLabel={t('hero.contact')} />
-        <HeroSocialLinks />
-      </motion.div>
 
       <HeroScrollHint />
     </section>

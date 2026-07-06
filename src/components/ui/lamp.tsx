@@ -19,10 +19,10 @@ const EFFECT_HEIGHT =
   "h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36";
 
 const CONTENT_OVERLAP =
-  "-translate-y-[4.25rem] sm:-translate-y-[5.25rem] md:-translate-y-[6.25rem] lg:-translate-y-[7.25rem] xl:-translate-y-[8.25rem]";
+  "-translate-y-[3rem] sm:-translate-y-[4rem] md:-translate-y-[5rem] lg:-translate-y-[6rem] xl:-translate-y-[7rem]";
 
 const CONTENT_COLLAPSE =
-  "-mb-[4.25rem] sm:-mb-[5.25rem] md:-mb-[6.25rem] lg:-mb-[7.25rem] xl:-mb-[8.25rem]";
+  "-mb-[3rem] sm:-mb-[4rem] md:-mb-[5rem] lg:-mb-[6rem] xl:-mb-[7rem]";
 
 type BeamSide = "left" | "right";
 
