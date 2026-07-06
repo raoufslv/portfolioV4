@@ -58,7 +58,7 @@ function HeroCtaButtons({ projectsLabel, contactLabel }: { projectsLabel: string
 
 function HeroSocialLinks() {
   return (
-    <div className="mb-6 flex flex-wrap justify-center gap-3 sm:mb-8 sm:gap-4">
+    <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
       {SOCIAL_LINKS.map((link) => (
         <SocialIconLink key={link.label} {...link} />
       ))}
@@ -71,7 +71,7 @@ function HeroScrollHint() {
 
   return (
     <motion.div
-      className="flex flex-col items-center pb-6 sm:pb-8"
+      className="flex shrink-0 flex-col items-center pb-4 sm:pb-6"
       animate={{ y: [0, 8, 0] }}
       transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
     >
@@ -93,9 +93,9 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100dvh-4rem)] flex-col overflow-hidden bg-light-100 dark:bg-dark-600 sm:min-h-[calc(100dvh-4.5rem)]"
+      className="relative flex min-h-screen min-h-dvh flex-col overflow-hidden bg-light-100 dark:bg-dark-600"
     >
-      <div className="flex flex-1 flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 pt-16 sm:px-6 sm:pt-[4.5rem] lg:px-8">
         <motion.div
           className="flex w-full max-w-3xl flex-col items-center text-center"
           {...HERO_CONTENT_ANIMATION}
