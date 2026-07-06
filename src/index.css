@@ -18,3 +18,31 @@
     background-color: #121831;
   }
 }
+
+@layer utilities {
+  .chat-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(2, 132, 199, 0.35) transparent;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(2, 132, 199, 0.35);
+    border-radius: 9999px;
+  }
+
+  html.dark .chat-scrollbar {
+    scrollbar-color: rgba(56, 189, 248, 0.35) transparent;
+  }
+
+  html.dark .chat-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(56, 189, 248, 0.35);
+  }
+}

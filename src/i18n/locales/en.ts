@@ -24,6 +24,15 @@ export default {
     'about.description2': 'Hey there! I\'m Raouf\'s AI assistant 👨‍💻 — ask me about his experience at Rakoono, his stack (Next.js, TypeScript, AI), projects, or background.',
     'about.sendButton': 'Send',
     'about.chatPlaceholder': 'Ask about Abderraouf’s skills, projects, or experience...',
+    'about.thinking': 'Thinking...',
+    'about.online': 'Online',
+    'about.suggestedProjects': 'His projects',
+    'about.suggestedStack': 'His stack',
+    'about.suggestedExperience': 'Rakoono experience',
+    'about.suggestedProjectsQuery': 'What are Raouf\'s projects?',
+    'about.suggestedStackQuery': 'What is Raouf\'s tech stack?',
+    'about.suggestedExperienceQuery': 'Tell me about his experience at Rakoono',
+    'about.errorMessage': 'Sorry, I\'m having trouble responding right now. Please try again in a moment or contact Raouf at devcode.raouf@gmail.com.',
 
     // Skills Section
     'skills.title': 'Skills',
