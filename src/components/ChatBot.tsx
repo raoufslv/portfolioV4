@@ -62,6 +62,26 @@ interface Message {
     content: string;
 }
 
+const CHAT_MODEL =
+    import.meta.env.VITE_OPENROUTER_MODEL ?? "liquid/lfm-2.5-1.2b-instruct:free";
+
+async function requestChatCompletion(messages: Message[]) {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+        },
+        body: JSON.stringify({
+            model: CHAT_MODEL,
+            messages: [systemMessage, ...messages],
+        }),
+    });
+
+    const data = await response.json();
+    return { response, data };
+}
+
 export default function AboutChatBot() {
     const { t, i18n } = useTranslation();
     useEffect(() => {
@@ -107,19 +127,7 @@ export default function AboutChatBot() {
         setLoading(true);
 
         try {
-            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
-                },
-                body: JSON.stringify({
-                    model: import.meta.env.VITE_OPENROUTER_MODEL ?? "google/gemma-4-31b-it:free",
-                    messages: [systemMessage, ...updatedMessages],
-                }),
-            });
-
-            const data = await response.json();
+            const { response, data } = await requestChatCompletion(updatedMessages);
 
             if (!response.ok) {
                 throw new Error(data.error?.message ?? "OpenRouter API error");
