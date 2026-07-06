@@ -5,9 +5,10 @@ import ChatMarkdown from "./ChatMarkdown";
 interface ChatMessageProps {
   role: string;
   content: string;
+  isStreaming?: boolean;
 }
 
-export default function ChatMessage({ role, content }: ChatMessageProps) {
+export default function ChatMessage({ role, content, isStreaming = false }: ChatMessageProps) {
   const isUser = role === "user";
 
   return (
@@ -36,7 +37,12 @@ export default function ChatMessage({ role, content }: ChatMessageProps) {
         {isUser ? (
           <p className="whitespace-pre-wrap text-sm leading-relaxed">{content}</p>
         ) : (
-          <ChatMarkdown content={content} />
+          <>
+            <ChatMarkdown content={content} />
+            {isStreaming && (
+              <span className="ml-0.5 inline-block h-4 w-0.5 animate-pulse bg-primary-500 align-middle dark:bg-primary-400" />
+            )}
+          </>
         )}
       </div>
     </motion.div>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "./common/SectionHeader";
 import ChatWindow from "./chat/ChatWindow";
+import { streamChatCompletion } from "./chat/streamChatCompletion";
 
 const systemMessage = {
     role: "system",
@@ -65,23 +66,6 @@ interface Message {
 const CHAT_MODEL =
     import.meta.env.VITE_OPENROUTER_MODEL ?? "liquid/lfm-2.5-1.2b-instruct:free";
 
-async function requestChatCompletion(messages: Message[]) {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
-        },
-        body: JSON.stringify({
-            model: CHAT_MODEL,
-            messages: [systemMessage, ...messages],
-        }),
-    });
-
-    const data = await response.json();
-    return { response, data };
-}
-
 export default function AboutChatBot() {
     const { t, i18n } = useTranslation();
     const [messages, setMessages] = useState<Message[]>([
@@ -90,6 +74,7 @@ export default function AboutChatBot() {
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const abortRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
         setMessages((prev) => {
@@ -117,30 +102,63 @@ export default function AboutChatBot() {
 
         const userMessage = { role: "user", content: messageText };
         const updatedMessages = [...messages, userMessage];
-        setMessages(updatedMessages);
+        setMessages([...updatedMessages, { role: "assistant", content: "" }]);
         setInput("");
         setLoading(true);
 
+        abortRef.current?.abort();
+        const abortController = new AbortController();
+        abortRef.current = abortController;
+
         try {
-            const { response, data } = await requestChatCompletion(updatedMessages);
+            await streamChatCompletion({
+                messages: [systemMessage, ...updatedMessages],
+                model: CHAT_MODEL,
+                apiKey: import.meta.env.VITE_OPENROUTER_API_KEY,
+                signal: abortController.signal,
+                onChunk: (chunk) => {
+                    setMessages((prev) => {
+                        const next = [...prev];
+                        const last = next[next.length - 1];
+                        if (last?.role === "assistant") {
+                            next[next.length - 1] = {
+                                ...last,
+                                content: last.content + chunk,
+                            };
+                        }
+                        return next;
+                    });
+                },
+            });
 
-            if (!response.ok) {
-                throw new Error(data.error?.message ?? "OpenRouter API error");
-            }
-
-            const botMessage = data.choices?.[0]?.message;
-            if (!botMessage) {
-                throw new Error("Invalid response from OpenRouter");
-            }
-
-            setMessages((prev) => [...prev, botMessage]);
+            setMessages((prev) => {
+                const last = prev[prev.length - 1];
+                if (last?.role === "assistant" && !last.content.trim()) {
+                    return [
+                        ...prev.slice(0, -1),
+                        { role: "assistant", content: t("about.errorMessage") },
+                    ];
+                }
+                return prev;
+            });
         } catch (error) {
+            if (error instanceof DOMException && error.name === "AbortError") return;
+
             console.error("Error fetching response:", error);
-            setMessages((prev) => [
-                ...prev,
-                { role: "assistant", content: t("about.errorMessage") },
-            ]);
+            setMessages((prev) => {
+                const last = prev[prev.length - 1];
+                if (last?.role === "assistant" && last.content === "") {
+                    return [
+                        ...prev.slice(0, -1),
+                        { role: "assistant", content: t("about.errorMessage") },
+                    ];
+                }
+                return [...prev, { role: "assistant", content: t("about.errorMessage") }];
+            });
         } finally {
+            if (abortRef.current === abortController) {
+                abortRef.current = null;
+            }
             setLoading(false);
         }
     };
