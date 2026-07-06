@@ -66,9 +66,12 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
+        'display': ['clamp(2.5rem, 5vw, 4.5rem)', { lineHeight: '1.05' }],
+        'section': ['clamp(1.75rem, 3vw, 2.5rem)', { lineHeight: '1.15' }],
         'xs': ['0.75rem', { lineHeight: '1rem' }],
         'sm': ['0.875rem', { lineHeight: '1.25rem' }],
         'base': ['1rem', { lineHeight: '1.5rem' }],

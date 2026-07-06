@@ -7,20 +7,27 @@ export default {
     'nav.projects': 'Projects',
     'nav.resume': 'Resume',
     'nav.contact': 'Contact',
+    'nav.chatbot': 'AI Chat',
 
     // Hero Section
     'hero.greeting': 'Hello, I\'m',
     'hero.name': 'Raouf Abdallah',
     'hero.title': 'Fullstack Software Engineer',
     'hero.description': 'Building production web products end-to-end — React, Next.js, TypeScript, APIs, data and AI. Currently at Rakoono, Paris.',
+    'hero.status': 'Available · Paris · Rakoono',
     'hero.cta': 'View My Work',
+    'hero.ctaChat': 'Chat with AI',
     'hero.contact': 'Contact Me',
     'hero.scroll': 'Scroll Down',
 
     // About Section
     'about.title': 'About Me',
     'about.subtitle': 'My Background',
-    'about.description1': 'Ask My AI Assistant',
+    'about.bio1': 'Fullstack engineer at Rakoono (Station F, Paris). I ship production features end-to-end — from data models and APIs to polished UI and automated tests.',
+    'about.bio2': 'My stack centers on React, Next.js, TypeScript, Supabase and AI integrations (Vercel AI SDK, multi-agent workflows). I care about clarity, performance and developer experience.',
+    'about.bio3': 'Open to opportunities across France. When I\'m not coding, I explore new tools, contribute to side projects and refine this portfolio.',
+    'about.description1': 'Try My AI Assistant',
+    'about.chatSubtitle': 'Ask anything about my experience, stack or projects',
     'about.description2': 'Hey there! I\'m Raouf\'s AI assistant 👨‍💻 — ask me about his experience at Rakoono, his stack (Next.js, TypeScript, AI), projects, or background.',
     'about.sendButton': 'Send',
     'about.chatPlaceholder': 'Ask about Abderraouf’s skills, projects, or experience...',
@@ -60,12 +67,21 @@ export default {
     'projects.confidential.description': 'Private product — screenshots not shared.',
     'projects.confidential.ariaLabel': '{{title}} — confidential project, no screenshots',
     'projects.confidential.highlights': 'Key contributions',
+    'projects.other': 'Other Projects',
+    'projects.caseStudy': 'View case study',
+    'projects.caseStudyProblem': 'Problem',
+    'projects.caseStudyRole': 'Role',
+    'projects.caseStudyResult': 'Result',
+    'projects.closeModal': 'Close',
+    'projects.page': 'Page {{n}}',
 
     // Resume Section
     'resume.title': 'Resume',
     'resume.subtitle': 'My Journey',
     'resume.education': 'Education',
     'resume.experience': 'Experience',
+    'resume.filterAll': 'All',
+    'resume.current': 'Current',
     "resume.timeline": [
       {
         "id": 1,
@@ -146,6 +162,12 @@ export default {
     'contact.messagePlaceholder': 'Your Message',
     'contact.success': 'Message sent successfully!',
     'contact.error': 'Error sending message. Please try again.',
+    'contact.getInTouch': 'Get In Touch',
+    'contact.emailDirect': 'Email me directly',
+
+    // Testimonial
+    'testimonial.quote': 'Raouf delivers thoughtful fullstack work with strong ownership — from AI features to production-ready UI and tests.',
+    'testimonial.author': 'Team lead, EdTech',
 
     // Footer
     'footer.rights': 'All Rights Reserved',

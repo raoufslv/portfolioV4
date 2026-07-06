@@ -21,7 +21,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle }) => {
       transition={{ duration: 0.5 }}
       className="text-center mb-12"
     >
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">{title}</h2>
+      <h2 className="font-display text-section font-bold mb-2">{title}</h2>
       <p className="text-lg text-dark-400 dark:text-light-300">{subtitle}</p>
       <div className="mt-4 flex justify-center">
         <div className="w-16 h-1 bg-primary-600 dark:bg-primary-400 rounded"></div>

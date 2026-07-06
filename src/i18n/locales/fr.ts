@@ -7,20 +7,27 @@ export default {
     'nav.projects': 'Projets',
     'nav.resume': 'CV',
     'nav.contact': 'Contact',
+    'nav.chatbot': 'IA',
 
     // Hero Section
     'hero.greeting': 'Bonjour, je suis',
     'hero.name': 'Raouf Abdallah',
     'hero.title': 'Ingénieur Logiciel Fullstack',
     'hero.description': 'Je construis des produits web en production de bout en bout — React, Next.js, TypeScript, APIs, data et IA. Actuellement chez Rakoono, Paris.',
+    'hero.status': 'Disponible · Paris · Rakoono',
     'hero.cta': 'Voir Mes Projets',
+    'hero.ctaChat': 'Discuter avec l\'IA',
     'hero.contact': 'Me Contacter',
     'hero.scroll': 'Défiler',
 
     // About Section
     'about.title': 'À Propos',
     'about.subtitle': 'Mon Parcours',
-    'about.description1': 'Demandez à mon assistant IA',
+    'about.bio1': 'Ingénieur fullstack chez Rakoono (Station F, Paris). Je livre des features en production de bout en bout — modèles de données, APIs, UI soignée et tests automatisés.',
+    'about.bio2': 'Ma stack : React, Next.js, TypeScript, Supabase et intégrations IA (Vercel AI SDK, workflows multi-agents). Je privilégie la clarté, la performance et l\'expérience développeur.',
+    'about.bio3': 'Ouvert aux opportunités en France. En dehors du code, j\'explore de nouveaux outils et affine ce portfolio.',
+    'about.description1': 'Essaie mon assistant IA',
+    'about.chatSubtitle': 'Pose une question sur mon expérience, ma stack ou mes projets',
     'about.description2': 'Salut ! Je suis l\'assistant IA de Raouf 👨‍💻 — posez-moi des questions sur son expérience chez Rakoono, sa stack (Next.js, TypeScript, IA), ses projets ou son parcours.',
     'about.sendButton': 'Envoyer',
     'about.chatPlaceholder': 'Demandez les compétences, les projets ou l\'expérience d\'Abderraouf...',
@@ -59,12 +66,21 @@ export default {
     'projects.confidential.description': 'Produit privé — captures non partagées.',
     'projects.confidential.ariaLabel': '{{title}} — projet confidentiel, sans capture d\'écran',
     'projects.confidential.highlights': 'Contributions clés',
+    'projects.other': 'Autres projets',
+    'projects.caseStudy': 'Voir le case study',
+    'projects.caseStudyProblem': 'Problème',
+    'projects.caseStudyRole': 'Rôle',
+    'projects.caseStudyResult': 'Résultat',
+    'projects.closeModal': 'Fermer',
+    'projects.page': 'Page {{n}}',
 
     // Resume Section
     'resume.title': 'CV',
     'resume.subtitle': 'Mon Parcours',
     'resume.education': 'Formation',
     'resume.experience': 'Expérience',
+    'resume.filterAll': 'Tout',
+    'resume.current': 'Actuel',
     'resume.timeline': [
       {
         "id": 1,
@@ -144,6 +160,12 @@ export default {
     'contact.messagePlaceholder': 'Votre Message',
     'contact.success': 'Message envoyé avec succès!',
     'contact.error': 'Erreur lors de l\'envoi du message. Veuillez réessayer.',
+    'contact.getInTouch': 'Entrer en Contact',
+    'contact.emailDirect': 'M\'écrire directement',
+
+    // Testimonial
+    'testimonial.quote': 'Raouf livre un travail fullstack réfléchi avec une vraie ownership — des features IA à une UI prête pour la production.',
+    'testimonial.author': 'Thomas - Lead technique, EdTech',
 
     // Footer
     'footer.rights': 'Tous Droits Réservés',

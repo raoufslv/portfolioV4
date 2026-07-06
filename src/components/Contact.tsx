@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, Mail, Phone, MapPin, AlertCircle, CheckCircle } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, AlertCircle, CheckCircle, ArrowRight } from 'lucide-react';
 import SectionHeader from './common/SectionHeader';
+import Section from './layout/Section';
 import emailjs from '@emailjs/browser';
+import { containerVariants, itemVariants } from '@/lib/motionVariants';
 
 interface FormData {
   name: string;
@@ -82,27 +84,6 @@ const Contact: React.FC = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
   const renderFormStatusMessage = () => {
     if (formStatus === 'success') {
       return (
@@ -131,17 +112,29 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 ">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section">
-        <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
+    <Section id="contact">
+      <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
 
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12"
-        >
+      <motion.a
+        href="mailto:devcode.raouf@gmail.com"
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mx-auto mb-10 flex max-w-md items-center justify-center gap-3 rounded-xl border border-primary-500/30 bg-primary-500/10 px-6 py-4 font-medium text-primary-700 transition-colors hover:bg-primary-500/20 dark:text-primary-300"
+      >
+        <Mail size={20} />
+        {t('contact.emailDirect')}
+        <ArrowRight size={18} />
+      </motion.a>
+
+      <motion.div
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        className="grid grid-cols-1 gap-12 lg:grid-cols-2"
+      >
           {/* Contact Form */}
           <motion.div variants={itemVariants} className="order-2 lg:order-1">
             {renderFormStatusMessage()}
@@ -224,7 +217,7 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="order-1 lg:order-2">
             <div className="bg-light-100 dark:bg-dark-600 p-8 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-6">Get In Touch</h3>
+              <h3 className="mb-6 text-xl font-semibold">{t('contact.getInTouch')}</h3>
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -263,8 +256,7 @@ const Contact: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+    </Section>
   );
 };
 

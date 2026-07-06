@@ -4,9 +4,8 @@ import {
     motion,
     useTransform,
     useScroll,
-    useVelocity,
     useSpring,
-} from "motion/react";
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const TracingBeam = ({
@@ -63,7 +62,7 @@ export const TracingBeam = ({
                                 ? "none"
                                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                     }}
-                    className="border-netural-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
+                    className="ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border border-light-300 shadow-sm dark:border-dark-400"
                 >
                     <motion.div
                         transition={{
@@ -71,10 +70,10 @@ export const TracingBeam = ({
                             delay: 0.5,
                         }}
                         animate={{
-                            backgroundColor: scrollYProgress.get() > 0 ? "white" : "#10b981",
-                            borderColor: scrollYProgress.get() > 0 ? "white" : "#059669",
+                            backgroundColor: scrollYProgress.get() > 0 ? "white" : "#0ea5e9",
+                            borderColor: scrollYProgress.get() > 0 ? "white" : "#0284c7",
                         }}
-                        className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
+                        className="h-2 w-2 rounded-full border border-primary-300 bg-primary-500"
                     />
                 </motion.div>
                 <svg
