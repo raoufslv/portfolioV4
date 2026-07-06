@@ -49,7 +49,7 @@ const NavbarDock = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={dockTransition}
           className="pointer-events-auto"
-          aria-label="Main navigation"
+          aria-label={t("nav.ariaMain")}
         >
           <div className="flex w-fit items-center gap-1 rounded-full border border-light-300/80 bg-light-100/90 px-2 py-2 shadow-lg backdrop-blur-md dark:border-dark-400/50 dark:bg-dark-600/90">
           {navLinks.map((link) => {
@@ -80,7 +80,7 @@ const NavbarDock = () => {
             type="button"
             onClick={toggleTheme}
             className="rounded-full p-2 text-dark-400 transition-colors hover:bg-light-300 dark:text-light-300 dark:hover:bg-dark-400"
-            aria-label={theme === "dark" ? "Light mode" : "Dark mode"}
+            aria-label={theme === "dark" ? t("nav.ariaThemeLight") : t("nav.ariaThemeDark")}
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -91,7 +91,7 @@ const NavbarDock = () => {
               onClick={() => setLangOpen(!langOpen)}
               className="flex items-center rounded-full p-2 text-dark-400 transition-colors hover:bg-light-300 dark:text-light-300 dark:hover:bg-dark-400"
               aria-expanded={langOpen}
-              aria-label="Change language"
+              aria-label={t("nav.ariaLanguage")}
             >
               <Languages size={18} />
             </button>

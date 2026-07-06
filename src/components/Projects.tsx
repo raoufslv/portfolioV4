@@ -6,13 +6,14 @@ import SectionHeader from "./common/SectionHeader";
 import Section from "./layout/Section";
 import FeaturedBento from "./projects/FeaturedBento";
 import ProjectCard from "./projects/ProjectCard";
-import { projects } from "@/data/projects";
+import { useProjects } from "@/hooks/useProjects";
 import { containerVariants, itemVariants } from "@/lib/motionVariants";
 
 const ProjectModal = lazy(() => import("./projects/ProjectModal"));
 
 const Projects = () => {
   const { t } = useTranslation();
+  const projects = useProjects();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [activeFilter, setActiveFilter] = useState("web");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);

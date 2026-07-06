@@ -66,20 +66,20 @@ const Contact: React.FC = () => {
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
-      label: 'Email',
+      label: t('contact.email'),
       value: 'devcode.raouf@gmail.com',
       href: 'mailto:devcode.raouf@gmail.com'
     },
     {
       icon: <Phone className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
-      label: 'Phone',
+      label: t('contact.phoneLabel'),
       value: '+33 7 69 35 31 22',
       href: 'tel:+33769353122'
     },
     {
       icon: <MapPin className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
-      label: 'Location',
-      value: 'Paris, France',
+      label: t('contact.locationLabel'),
+      value: t('contact.locationValue'),
       href: 'https://maps.google.com/?q=Paris+France'
     }
   ];
@@ -202,7 +202,7 @@ const Contact: React.FC = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    {t('contact.send')}...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
@@ -247,7 +247,7 @@ const Contact: React.FC = () => {
 
               <div className="mt-8">
                 <iframe
-                  title="Location Map"
+                  title={t('contact.mapTitle')}
                   className="w-full h-64 rounded-lg border-0"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83948.75447897479!2d2.277019951611887!3d48.85883769999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8dd0279ea9d45826!2sParis%2C%20France!5e0!3m2!1sen!2sfr!4v1710000000000"
                   loading="lazy"
