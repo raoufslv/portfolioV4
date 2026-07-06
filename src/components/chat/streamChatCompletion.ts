@@ -6,24 +6,39 @@ interface Message {
 interface StreamChatOptions {
   messages: Message[];
   model: string;
-  apiKey: string;
   onChunk: (chunk: string) => void;
   signal?: AbortSignal;
+}
+
+function getChatEndpoint(): string {
+  if (import.meta.env.VITE_CHAT_API_URL) {
+    return import.meta.env.VITE_CHAT_API_URL;
+  }
+  if (import.meta.env.DEV && import.meta.env.VITE_OPENROUTER_API_KEY) {
+    return "https://openrouter.ai/api/v1/chat/completions";
+  }
+  return "/api/chat";
+}
+
+function getHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  if (import.meta.env.DEV && import.meta.env.VITE_OPENROUTER_API_KEY) {
+    headers.Authorization = `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`;
+  }
+  return headers;
 }
 
 export async function streamChatCompletion({
   messages,
   model,
-  apiKey,
   onChunk,
   signal,
 }: StreamChatOptions): Promise<void> {
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+  const response = await fetch(getChatEndpoint(), {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
+    headers: getHeaders(),
     body: JSON.stringify({
       model,
       messages,
@@ -34,7 +49,7 @@ export async function streamChatCompletion({
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.error?.message ?? "OpenRouter API error");
+    throw new Error(errorData.error?.message ?? errorData.error ?? "Chat API error");
   }
 
   const reader = response.body?.getReader();

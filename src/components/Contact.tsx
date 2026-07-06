@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, Mail, Phone, MapPin, AlertCircle, CheckCircle } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, AlertCircle, CheckCircle, ArrowRight } from 'lucide-react';
 import SectionHeader from './common/SectionHeader';
+import Section from './layout/Section';
 import emailjs from '@emailjs/browser';
+import { containerVariants, itemVariants } from '@/lib/motionVariants';
 
 interface FormData {
   name: string;
@@ -64,44 +66,23 @@ const Contact: React.FC = () => {
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
-      label: 'Email',
+      label: t('contact.email'),
       value: 'devcode.raouf@gmail.com',
       href: 'mailto:devcode.raouf@gmail.com'
     },
     {
       icon: <Phone className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
-      label: 'Phone',
+      label: t('contact.phoneLabel'),
       value: '+33 7 69 35 31 22',
       href: 'tel:+33769353122'
     },
     {
       icon: <MapPin className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
-      label: 'Location',
-      value: 'Paris, France',
+      label: t('contact.locationLabel'),
+      value: t('contact.locationValue'),
       href: 'https://maps.google.com/?q=Paris+France'
     }
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
 
   const renderFormStatusMessage = () => {
     if (formStatus === 'success') {
@@ -131,17 +112,29 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 ">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section">
-        <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
+    <Section id="contact">
+      <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
 
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12"
-        >
+      <motion.a
+        href="mailto:devcode.raouf@gmail.com"
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mx-auto mb-10 flex max-w-md items-center justify-center gap-3 rounded-xl border border-primary-500/30 bg-primary-500/10 px-6 py-4 font-medium text-primary-700 transition-colors hover:bg-primary-500/20 dark:text-primary-300"
+      >
+        <Mail size={20} />
+        {t('contact.emailDirect')}
+        <ArrowRight size={18} />
+      </motion.a>
+
+      <motion.div
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        className="grid grid-cols-1 gap-12 lg:grid-cols-2"
+      >
           {/* Contact Form */}
           <motion.div variants={itemVariants} className="order-2 lg:order-1">
             {renderFormStatusMessage()}
@@ -209,7 +202,7 @@ const Contact: React.FC = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    {t('contact.send')}...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
@@ -224,7 +217,7 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="order-1 lg:order-2">
             <div className="bg-light-100 dark:bg-dark-600 p-8 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-6">Get In Touch</h3>
+              <h3 className="mb-6 text-xl font-semibold">{t('contact.getInTouch')}</h3>
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -254,7 +247,7 @@ const Contact: React.FC = () => {
 
               <div className="mt-8">
                 <iframe
-                  title="Location Map"
+                  title={t('contact.mapTitle')}
                   className="w-full h-64 rounded-lg border-0"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83948.75447897479!2d2.277019951611887!3d48.85883769999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8dd0279ea9d45826!2sParis%2C%20France!5e0!3m2!1sen!2sfr!4v1710000000000"
                   loading="lazy"
@@ -263,8 +256,7 @@ const Contact: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+    </Section>
   );
 };
 
