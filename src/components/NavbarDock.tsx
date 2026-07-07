@@ -4,20 +4,21 @@ import { Link } from "react-scroll";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Home, FolderKanban, User, Bot, Mail, Moon, Sun, Languages } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { useChatWidget } from "../context/ChatWidgetContext";
 
 const SCROLL_OFFSET = -80;
 
 const NavbarDock = () => {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
+  const { open: openChat } = useChatWidget();
   const prefersReducedMotion = useReducedMotion();
   const [langOpen, setLangOpen] = useState(false);
 
-  const navLinks = [
+  const scrollLinks = [
     { name: t("nav.home"), to: "hero", icon: Home },
     { name: t("nav.projects"), to: "projects", icon: FolderKanban },
     { name: t("nav.about"), to: "about", icon: User },
-    { name: t("nav.chatbot"), to: "chatbot", icon: Bot },
     { name: t("nav.contact"), to: "contact", icon: Mail },
   ];
 
@@ -52,7 +53,7 @@ const NavbarDock = () => {
           aria-label={t("nav.ariaMain")}
         >
           <div className="flex w-fit items-center gap-1 rounded-full border border-light-300/80 bg-light-100/90 px-2 py-2 shadow-lg backdrop-blur-md dark:border-dark-400/50 dark:bg-dark-600/90">
-          {navLinks.map((link) => {
+          {scrollLinks.map((link) => {
             const Icon = link.icon;
             return (
               <Link
@@ -73,6 +74,19 @@ const NavbarDock = () => {
               </Link>
             );
           })}
+
+          <button
+            type="button"
+            onClick={openChat}
+            className="group relative flex cursor-pointer items-center rounded-full px-2.5 py-2 text-dark-400 transition-colors hover:text-primary-600 dark:text-light-300 dark:hover:text-primary-400 sm:px-3"
+            title={t("nav.chatbot")}
+            aria-label={t("nav.chatbot")}
+          >
+            <Bot size={18} aria-hidden />
+            <span className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-dark-500 px-2 py-1 text-xs text-light-100 opacity-0 transition-opacity group-hover:opacity-100">
+              {t("nav.chatbot")}
+            </span>
+          </button>
 
           <div className="mx-1 h-6 w-px bg-light-300 dark:bg-dark-400" aria-hidden />
 

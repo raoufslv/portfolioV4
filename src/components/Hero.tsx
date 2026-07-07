@@ -4,6 +4,7 @@ import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail, LucideIcon } from 'lucide-react';
 import { LampContainer } from './ui/lamp';
+import { useChatWidget } from '@/context/ChatWidgetContext';
 
 const SCROLL_LINK_PROPS = {
   spy: true,
@@ -44,6 +45,8 @@ function SocialIconLink({ href, label, icon: Icon }: { href: string; label: stri
 }
 
 function HeroCtaButtons({ workLabel, chatLabel }: { workLabel: string; chatLabel: string }) {
+  const { open } = useChatWidget();
+
   return (
     <motion.div variants={fadeUp} className="mb-8 flex w-full flex-col items-center justify-center gap-3 sm:mb-10 sm:w-auto sm:flex-row sm:gap-4">
       <Link
@@ -53,13 +56,13 @@ function HeroCtaButtons({ workLabel, chatLabel }: { workLabel: string; chatLabel
       >
         {workLabel}
       </Link>
-      <Link
-        to="chatbot"
-        {...SCROLL_LINK_PROPS}
+      <button
+        type="button"
+        onClick={open}
         className="w-full cursor-pointer rounded-lg border border-secondary-600 px-6 py-3 font-medium text-secondary-600 transition-all hover:bg-secondary-50 dark:border-secondary-400 dark:text-secondary-400 dark:hover:bg-secondary-900/10 sm:w-auto"
       >
         {chatLabel}
-      </Link>
+      </button>
     </motion.div>
   );
 }

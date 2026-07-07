@@ -15,6 +15,10 @@ export default {
     'nav.ariaThemeLight': 'Switch to light mode',
     'nav.ariaThemeDark': 'Switch to dark mode',
 
+    // Chat widget
+    'chat.open': 'Open AI assistant',
+    'chat.close': 'Close AI assistant',
+
     // Hero Section
     'hero.greeting': 'Hello, I\'m',
     'hero.name': 'Raouf Abdallah',

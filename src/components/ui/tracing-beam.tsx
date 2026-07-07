@@ -22,23 +22,33 @@ export const TracingBeam = ({
     });
 
     const contentRef = useRef<HTMLDivElement>(null);
-    const [svgHeight, setSvgHeight] = useState(0);
+    const [trackHeight, setTrackHeight] = useState(0);
 
     useEffect(() => {
-        if (contentRef.current) {
-            setSvgHeight(contentRef.current.offsetHeight);
-        }
+        const element = contentRef.current;
+        if (!element) return;
+
+        const BEAM_TOP_OFFSET = 12;
+        const DOT_HEIGHT = 16;
+        const updateHeight = () => {
+            setTrackHeight(Math.max(0, element.offsetHeight - BEAM_TOP_OFFSET - DOT_HEIGHT));
+        };
+        updateHeight();
+
+        const observer = new ResizeObserver(updateHeight);
+        observer.observe(element);
+        return () => observer.disconnect();
     }, []);
 
     const y1 = useSpring(
-        useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]),
+        useTransform(scrollYProgress, [0, 0.8], [50, trackHeight]),
         {
             stiffness: 500,
             damping: 90,
         },
     );
     const y2 = useSpring(
-        useTransform(scrollYProgress, [0, 1], [50, svgHeight - 200]),
+        useTransform(scrollYProgress, [0, 1], [50, trackHeight - 200]),
         {
             stiffness: 500,
             damping: 90,
@@ -48,9 +58,12 @@ export const TracingBeam = ({
     return (
         <motion.div
             ref={ref}
-            className={cn("relative mx-auto 2xl:max-w-[76rem] xl:max-w-[64rem] lg:max-w-[50rem] md:max-w-[40rem] sm:max-w-[30rem] w-full", className)}
+            className={cn(
+                "relative mx-auto w-full sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[64rem] 2xl:max-w-[76rem]",
+                className
+            )}
         >
-            <div className="absolute top-3 -left-4 md:-left-20">
+            <div className="pointer-events-none absolute top-3 bottom-0 -left-4 md:-left-20">
                 <motion.div
                     transition={{
                         duration: 0.2,
@@ -76,15 +89,16 @@ export const TracingBeam = ({
                         className="h-2 w-2 rounded-full border border-primary-300 bg-primary-500"
                     />
                 </motion.div>
+                {trackHeight > 0 && (
                 <svg
-                    viewBox={`0 0 20 ${svgHeight}`}
+                    viewBox={`0 0 20 ${trackHeight}`}
                     width="20"
-                    height={svgHeight} // Set the SVG height
+                    height={trackHeight}
                     className="ml-4 block"
                     aria-hidden="true"
                 >
                     <motion.path
-                        d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+                        d={`M 1 0V -36 l 18 24 V ${trackHeight * 0.8} l -18 24V ${trackHeight}`}
                         fill="none"
                         stroke="#9091A0"
                         strokeOpacity="0.16"
@@ -93,7 +107,7 @@ export const TracingBeam = ({
                         }}
                     ></motion.path>
                     <motion.path
-                        d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+                        d={`M 1 0V -36 l 18 24 V ${trackHeight * 0.8} l -18 24V ${trackHeight}`}
                         fill="none"
                         stroke="url(#gradient)"
                         strokeWidth="1.25"
@@ -118,6 +132,7 @@ export const TracingBeam = ({
                         </motion.linearGradient>
                     </defs>
                 </svg>
+                )}
             </div>
             <div ref={contentRef}>{children}</div>
         </motion.div>

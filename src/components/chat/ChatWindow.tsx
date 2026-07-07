@@ -1,6 +1,5 @@
 import { RefObject } from "react";
-import { motion } from "framer-motion";
-import { Bot } from "lucide-react";
+import { Bot, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
@@ -21,6 +20,8 @@ interface ChatWindowProps {
   onSend: () => void;
   onPromptSelect: (prompt: string) => void;
   showSuggestedPrompts: boolean;
+  variant?: "section" | "floating";
+  onClose?: () => void;
 }
 
 export default function ChatWindow({
@@ -32,23 +33,25 @@ export default function ChatWindow({
   onSend,
   onPromptSelect,
   showSuggestedPrompts,
+  variant = "section",
+  onClose,
 }: ChatWindowProps) {
   const { t } = useTranslation();
+  const isFloating = variant === "floating";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-primary-500/20 bg-white/80 shadow-xl backdrop-blur-sm dark:bg-dark-600/90"
+    <div
+      className={`overflow-hidden rounded-2xl border border-primary-500/20 bg-white/95 shadow-2xl backdrop-blur-md dark:bg-dark-600/95 ${
+        isFloating ? "w-full" : "mx-auto max-w-4xl shadow-xl"
+      }`}
     >
-      <div className="flex items-center justify-between border-b border-dark-400/10 px-5 py-4 dark:border-dark-300/20">
+      <div className="flex items-center justify-between border-b border-dark-400/10 px-4 py-3 dark:border-dark-300/20 sm:px-5 sm:py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-100 text-primary-600 dark:bg-primary-900/40 dark:text-primary-400">
-            <Bot size={22} />
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-100 text-primary-600 dark:bg-primary-900/40 dark:text-primary-400 sm:h-10 sm:w-10">
+            <Bot size={isFloating ? 20 : 22} />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-dark-600 dark:text-light-100">
+            <h2 className="text-base font-bold text-dark-600 dark:text-light-100 sm:text-lg">
               {t("about.description1")}
             </h2>
             <div className="flex items-center gap-1.5">
@@ -57,11 +60,25 @@ export default function ChatWindow({
             </div>
           </div>
         </div>
+        {isFloating && onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-2 text-dark-400 transition-colors hover:bg-light-200 hover:text-dark-600 dark:text-light-400 dark:hover:bg-dark-500 dark:hover:text-light-100"
+            aria-label={t("chat.close")}
+          >
+            <X size={18} />
+          </button>
+        )}
       </div>
 
       <div
         ref={containerRef}
-        className="chat-scrollbar min-h-[420px] h-[min(560px,62dvh)] max-h-[75dvh] space-y-4 overflow-y-auto bg-light-100/50 px-4 py-5 sm:min-h-[480px] sm:h-[min(620px,68dvh)] sm:px-5 dark:bg-dark-500/30"
+        className={`chat-scrollbar space-y-4 overflow-y-auto bg-light-100/50 px-4 py-4 dark:bg-dark-500/30 sm:px-5 sm:py-5 ${
+          isFloating
+            ? "h-[min(52dvh,28rem)]"
+            : "min-h-[420px] h-[min(560px,62dvh)] max-h-[75dvh] sm:min-h-[480px] sm:h-[min(620px,68dvh)]"
+        }`}
       >
         {messages.map((msg, idx) => {
           const isStreamingMessage =
@@ -104,7 +121,8 @@ export default function ChatWindow({
         loading={loading}
         onChange={onInputChange}
         onSend={onSend}
+        compact={isFloating}
       />
-    </motion.div>
+    </div>
   );
 }

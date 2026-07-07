@@ -1,3 +1,9 @@
+import {
+  getChatModelCandidates,
+  getChatCompletionBody,
+  isRetryableChatError,
+} from "@/lib/chatConfig";
+
 interface Message {
   role: string;
   content: string;
@@ -30,26 +36,32 @@ function getHeaders(): Record<string, string> {
   return headers;
 }
 
-export async function streamChatCompletion({
-  messages,
-  model,
-  onChunk,
-  signal,
-}: StreamChatOptions): Promise<void> {
+async function readErrorMessage(response: Response): Promise<string> {
+  const errorData = await response.json().catch(() => ({}));
+  const nested = errorData.error;
+  if (typeof nested === "string") return nested;
+  if (nested?.message) return nested.message;
+  return "Chat API error";
+}
+
+async function streamWithModel(
+  model: string,
+  messages: Message[],
+  onChunk: (chunk: string) => void,
+  signal?: AbortSignal
+): Promise<void> {
   const response = await fetch(getChatEndpoint(), {
     method: "POST",
     headers: getHeaders(),
-    body: JSON.stringify({
-      model,
-      messages,
-      stream: true,
-    }),
+    body: JSON.stringify(getChatCompletionBody(model, messages, true)),
     signal,
   });
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.error?.message ?? errorData.error ?? "Chat API error");
+    const message = await readErrorMessage(response);
+    const error = new Error(message) as Error & { status?: number };
+    error.status = response.status;
+    throw error;
   }
 
   const reader = response.body?.getReader();
@@ -84,4 +96,42 @@ export async function streamChatCompletion({
       }
     }
   }
+}
+
+export async function streamChatCompletion({
+  messages,
+  model,
+  onChunk,
+  signal,
+}: StreamChatOptions): Promise<void> {
+  const candidates = getChatModelCandidates(model);
+  let lastError: Error | null = null;
+
+  for (let index = 0; index < candidates.length; index += 1) {
+    const candidate = candidates[index];
+
+    try {
+      await streamWithModel(candidate, messages, onChunk, signal);
+      return;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        throw error;
+      }
+
+      const chatError = error as Error & { status?: number };
+      lastError = chatError instanceof Error ? chatError : new Error("Chat API error");
+
+      const canRetry =
+        index < candidates.length - 1 &&
+        isRetryableChatError(chatError.status ?? 0, chatError.message);
+
+      if (!canRetry) {
+        throw lastError;
+      }
+
+      console.warn(`Chat model "${candidate}" failed, trying fallback...`, chatError.message);
+    }
+  }
+
+  throw lastError ?? new Error("Chat API error");
 }

@@ -15,6 +15,10 @@ export default {
     'nav.ariaThemeLight': 'Passer en mode clair',
     'nav.ariaThemeDark': 'Passer en mode sombre',
 
+    // Chat widget
+    'chat.open': 'Ouvrir l\'assistant IA',
+    'chat.close': 'Fermer l\'assistant IA',
+
     // Hero Section
     'hero.greeting': 'Bonjour, je suis',
     'hero.name': 'Raouf Abdallah',
