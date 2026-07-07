@@ -23,7 +23,7 @@ export default function ChatBot() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -43,8 +43,17 @@ export default function ChatBot() {
       if (event.key === "Escape") close();
     };
 
+    const handlePointerDown = (event: PointerEvent) => {
+      if (widgetRef.current?.contains(event.target as Node)) return;
+      close();
+    };
+
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
   }, [isOpen, close]);
 
   const scrollToBottom = useCallback(() => {
@@ -74,7 +83,7 @@ export default function ChatBot() {
     try {
       await streamChatCompletion({
         messages: [assistantSystemMessage, ...updatedMessages],
-                model: getPrimaryChatModel(),
+        model: getPrimaryChatModel(),
         onChunk: (chunk) => {
           setMessages((prev) => {
             const next = [...prev];
@@ -127,11 +136,10 @@ export default function ChatBot() {
 
   return (
     <div className="pointer-events-none fixed bottom-4 right-4 z-[60] sm:bottom-6 sm:right-6">
-      <div className="pointer-events-auto relative">
+      <div ref={widgetRef} className="pointer-events-auto relative">
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              ref={panelRef}
               key="chat-panel"
               initial={{ opacity: 0, y: 12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
