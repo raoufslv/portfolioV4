@@ -15,18 +15,27 @@ type ChatRequestBody = {
 };
 
 const CHAT_MODEL_FALLBACKS = [
-  "openrouter/free",
-  "google/gemini-2.0-flash-exp:free",
+  "tencent/hy3:free",
   "meta-llama/llama-3.2-3b-instruct:free",
-  "qwen/qwen-2.5-7b-instruct:free",
+  "liquid/lfm-2.5-1.2b-instruct:free",
 ];
+
+const CHAT_COMPLETION_OPTIONS = {
+  max_tokens: 320,
+  temperature: 0.5,
+  include_reasoning: false,
+  reasoning: {
+    effort: "none",
+    exclude: true,
+  },
+};
 
 function getChatModelCandidates(preferred?: string): string[] {
   const primary =
     preferred ??
     process.env.OPENROUTER_MODEL ??
     process.env.VITE_OPENROUTER_MODEL ??
-    "openrouter/free";
+    "tencent/hy3:free";
   return [...new Set([primary, ...CHAT_MODEL_FALLBACKS])];
 }
 
@@ -55,7 +64,12 @@ async function proxyChat(
       "HTTP-Referer": "https://raoufabdallah.me",
       "X-Title": "Raouf Portfolio",
     },
-    body: JSON.stringify({ model, messages, stream }),
+    body: JSON.stringify({
+      model,
+      messages,
+      stream,
+      ...CHAT_COMPLETION_OPTIONS,
+    }),
   });
 }
 

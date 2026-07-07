@@ -1,5 +1,6 @@
 import {
   getChatModelCandidates,
+  getChatCompletionBody,
   isRetryableChatError,
 } from "@/lib/chatConfig";
 
@@ -52,11 +53,7 @@ async function streamWithModel(
   const response = await fetch(getChatEndpoint(), {
     method: "POST",
     headers: getHeaders(),
-    body: JSON.stringify({
-      model,
-      messages,
-      stream: true,
-    }),
+    body: JSON.stringify(getChatCompletionBody(model, messages, true)),
     signal,
   });
 
