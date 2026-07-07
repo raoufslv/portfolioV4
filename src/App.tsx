@@ -11,6 +11,7 @@ import Testimonial from './components/Testimonial';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
+import { ChatWidgetProvider } from './context/ChatWidgetContext';
 import './i18n/config';
 import { TracingBeam } from './components/ui/tracing-beam';
 
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <ThemeProvider>
+      <ChatWidgetProvider>
       <div className="min-h-screen bg-light-200 text-dark-500 transition-colors duration-300 dark:bg-dark-500 dark:text-light-200">
         <NavbarDock />
         <main>
@@ -34,7 +36,6 @@ function App() {
             <div className="relative h-full antialiased pt-4">
               <Projects />
               <About />
-              <ChatBot />
               <Skills />
               <Resume />
               {SHOW_TESTIMONIAL && <Testimonial />}
@@ -43,7 +44,9 @@ function App() {
           </TracingBeam>
         </main>
         <Footer />
+        <ChatBot />
       </div>
+      </ChatWidgetProvider>
     </ThemeProvider>
   );
 }
