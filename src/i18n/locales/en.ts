@@ -49,7 +49,7 @@ export default {
     'about.suggestedProjectsQuery': 'What are Raouf\'s projects?',
     'about.suggestedStackQuery': 'What is Raouf\'s tech stack?',
     'about.suggestedExperienceQuery': 'Tell me about his experience at Rakoono',
-    'about.errorMessage': 'Sorry, I\'m having trouble responding right now. Please try again in a moment or contact Raouf at devcode.raouf@gmail.com.',
+    'about.errorMessage': 'Sorry, I\'m having trouble responding right now. Please try again in a moment or contact Raouf at raouf.abdallah03@gmail.com.',
 
     // Skills Section
     'skills.title': 'Skills',

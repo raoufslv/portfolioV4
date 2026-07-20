@@ -67,8 +67,8 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
       label: t('contact.email'),
-      value: 'devcode.raouf@gmail.com',
-      href: 'mailto:devcode.raouf@gmail.com'
+      value: 'raouf.abdallah03@gmail.com',
+      href: 'mailto:raouf.abdallah03@gmail.com'
     },
     {
       icon: <Phone className="w-5 h-5 text-primary-600 dark:text-primary-400" />,
@@ -116,7 +116,7 @@ const Contact: React.FC = () => {
       <SectionHeader title={t('contact.title')} subtitle={t('contact.subtitle')} />
 
       <motion.a
-        href="mailto:devcode.raouf@gmail.com"
+        href="mailto:raouf.abdallah03@gmail.com"
         variants={itemVariants}
         initial="hidden"
         whileInView="visible"
