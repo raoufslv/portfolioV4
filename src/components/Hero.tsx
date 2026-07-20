@@ -30,7 +30,7 @@ const fadeUp = {
 const SOCIAL_LINKS = [
   { href: 'https://github.com/raoufslv', label: 'GitHub', icon: Github },
   { href: 'https://www.linkedin.com/in/raoufslv/', label: 'LinkedIn', icon: Linkedin },
-  { href: 'mailto:devcode.raouf@gmail.com', label: 'Mail', icon: Mail },
+  { href: 'mailto:raouf.abdallah03@gmail.com', label: 'Mail', icon: Mail },
 ] as const;
 
 const socialLinkClassName =
