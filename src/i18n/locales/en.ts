@@ -106,7 +106,7 @@ export default {
         id: 2,
         title: 'Full-stack developer',
         organization: 'Ronin Tek — Algiers, Algeria',
-        period: 'Feb 2024 – Dec 2024',
+        period: 'Sep 2023 – Jun 2025',
         description: 'Built full-stack web apps and REST APIs with React, Node.js/Express, JWT/OAuth, MongoDB and Redis. Deployed on VPS with Docker and GitHub Actions CI/CD.',
         type: 'experience',
       },
