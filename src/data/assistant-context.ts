@@ -9,7 +9,7 @@ Fullstack software engineer at Rakoono (Station F, Paris), focused on shipping p
 
 **Work Experience**:
 - **Fullstack Software Engineer — AI & Product**, Rakoono, Paris (Jul 2025 – Present)
-- **Full-Stack Developer**, Ronin Tek, Algeria (Mar – Sep 2024)
+- **Full-Stack Developer**, Ronin Tek, Algeria (Sep 2023 – Jun 2025)
 - **AI & Software Engineering Intern**, Sonatrach, Algeria (Jan – Jun 2024)
 - **Web Development Intern**, USTHB, Algeria (Jan – Jun 2022)
 
