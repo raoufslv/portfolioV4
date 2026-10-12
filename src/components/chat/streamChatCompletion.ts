@@ -3,6 +3,7 @@ import {
   getChatCompletionBody,
   isRetryableChatError,
 } from "@/lib/chatConfig";
+import { readStreamPayload } from "@/lib/chatModels";
 
 interface Message {
   role: string;
@@ -13,6 +14,7 @@ interface StreamChatOptions {
   messages: Message[];
   model: string;
   onChunk: (chunk: string) => void;
+  onRetry?: () => void;
   signal?: AbortSignal;
 }
 
@@ -44,6 +46,24 @@ async function readErrorMessage(response: Response): Promise<string> {
   return "Chat API error";
 }
 
+function throwChatError(message: string, status: number): never {
+  const error = new Error(message) as Error & { status?: number };
+  error.status = status;
+  throw error;
+}
+
+function consumePayload(payload: string, onChunk: (chunk: string) => void): boolean {
+  const parsed = readStreamPayload(payload);
+  if (parsed.kind === "error") {
+    throwChatError(parsed.message, parsed.status);
+  }
+  if (parsed.kind === "content") {
+    onChunk(parsed.content);
+    return true;
+  }
+  return false;
+}
+
 async function streamWithModel(
   model: string,
   messages: Message[],
@@ -59,18 +79,17 @@ async function streamWithModel(
 
   if (!response.ok) {
     const message = await readErrorMessage(response);
-    const error = new Error(message) as Error & { status?: number };
-    error.status = response.status;
-    throw error;
+    throwChatError(message, response.status);
   }
 
   const reader = response.body?.getReader();
   if (!reader) {
-    throw new Error("Streaming not supported");
+    throwChatError("Streaming not supported", 502);
   }
 
   const decoder = new TextDecoder();
   let buffer = "";
+  let received = false;
 
   while (true) {
     const { done, value } = await reader.read();
@@ -82,19 +101,19 @@ async function streamWithModel(
 
     for (const line of lines) {
       const trimmed = line.trim();
-      if (!trimmed.startsWith("data: ")) continue;
-
-      const payload = trimmed.slice(6);
-      if (payload === "[DONE]") continue;
-
-      try {
-        const parsed = JSON.parse(payload);
-        const delta = parsed.choices?.[0]?.delta?.content;
-        if (delta) onChunk(delta);
-      } catch {
-        // Skip malformed SSE chunks
-      }
+      if (!trimmed.startsWith("data:")) continue;
+      if (consumePayload(trimmed.slice(5).trim(), onChunk)) received = true;
     }
+  }
+
+  const trailing = buffer.trim();
+  if (trailing) {
+    const payload = trailing.startsWith("data:") ? trailing.slice(5).trim() : trailing;
+    if (consumePayload(payload, onChunk)) received = true;
+  }
+
+  if (!received) {
+    throwChatError("Empty chat response", 502);
   }
 }
 
@@ -102,6 +121,7 @@ export async function streamChatCompletion({
   messages,
   model,
   onChunk,
+  onRetry,
   signal,
 }: StreamChatOptions): Promise<void> {
   const candidates = getChatModelCandidates(model);
@@ -129,7 +149,11 @@ export async function streamChatCompletion({
         throw lastError;
       }
 
-      console.warn(`Chat model "${candidate}" failed, trying fallback...`, chatError.message);
+      onRetry?.();
+      console.warn(
+        `Chat model "${candidate}" unavailable, trying the next model...`,
+        chatError.message
+      );
     }
   }
 

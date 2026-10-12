@@ -97,6 +97,16 @@ export default function ChatBot() {
             return next;
           });
         },
+        onRetry: () => {
+          setMessages((prev) => {
+            const next = [...prev];
+            const last = next[next.length - 1];
+            if (last?.role === "assistant") {
+              next[next.length - 1] = { ...last, content: "" };
+            }
+            return next;
+          });
+        },
         signal: abortController.signal,
       });
 
