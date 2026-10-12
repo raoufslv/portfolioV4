@@ -11,7 +11,6 @@ type VercelResponse = {
 };
 
 type ChatRequestBody = {
-  model?: string;
   messages?: unknown[];
   stream?: boolean;
 };
@@ -29,13 +28,11 @@ export default async function handler(
     return res.status(500).json({ error: "OpenRouter API key not configured" });
   }
 
-  const { model, messages, stream = true } = req.body ?? {};
+  const { messages, stream = true } = req.body ?? {};
 
   try {
     const response = await completeWithModelFallback({
       apiKey,
-      preferredModel:
-        model ?? process.env.OPENROUTER_MODEL ?? process.env.VITE_OPENROUTER_MODEL,
       messages: messages ?? [],
       stream,
     });

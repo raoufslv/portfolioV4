@@ -19,11 +19,10 @@ type AttemptResult = { ok: true; response: Response } | { ok: false; error: Atte
 
 export async function completeWithModelFallback(options: {
   apiKey: string;
-  preferredModel?: string;
   messages: unknown[];
   stream: boolean;
 }): Promise<Response> {
-  const candidates = getChatModelCandidates(options.preferredModel);
+  const candidates = getChatModelCandidates();
   let lastFailure: AttemptFailure | null = null;
 
   for (let index = 0; index < candidates.length; index += 1) {

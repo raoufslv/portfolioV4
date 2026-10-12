@@ -1,7 +1,6 @@
 import { completeWithModelFallback } from "../../src/lib/chatProxy";
 
 type ChatRequestBody = {
-  model?: string;
   messages?: unknown[];
   stream?: boolean;
 };
@@ -44,8 +43,6 @@ export default async (req: Request): Promise<Response> => {
   try {
     return await completeWithModelFallback({
       apiKey,
-      preferredModel:
-        body.model ?? process.env.OPENROUTER_MODEL ?? process.env.VITE_OPENROUTER_MODEL,
       messages: body.messages ?? [],
       stream: body.stream !== false,
     });

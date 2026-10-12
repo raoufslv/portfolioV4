@@ -1,6 +1,7 @@
 import {
   getChatModelCandidates,
   getChatCompletionBody,
+  getChatProxyBody,
   isRetryableChatError,
 } from "@/lib/chatConfig";
 import { readStreamPayload } from "@/lib/chatModels";
@@ -12,7 +13,6 @@ interface Message {
 
 interface StreamChatOptions {
   messages: Message[];
-  model: string;
   onChunk: (chunk: string) => void;
   onRetry?: () => void;
   signal?: AbortSignal;
@@ -26,6 +26,10 @@ function getChatEndpoint(): string {
     return "https://openrouter.ai/api/v1/chat/completions";
   }
   return "/api/chat";
+}
+
+function usesServerSideFallback(): boolean {
+  return getChatEndpoint() === "/api/chat";
 }
 
 function getHeaders(): Record<string, string> {
@@ -64,19 +68,10 @@ function consumePayload(payload: string, onChunk: (chunk: string) => void): bool
   return false;
 }
 
-async function streamWithModel(
-  model: string,
-  messages: Message[],
-  onChunk: (chunk: string) => void,
-  signal?: AbortSignal
+async function readStreamResponse(
+  response: Response,
+  onChunk: (chunk: string) => void
 ): Promise<void> {
-  const response = await fetch(getChatEndpoint(), {
-    method: "POST",
-    headers: getHeaders(),
-    body: JSON.stringify(getChatCompletionBody(model, messages, true)),
-    signal,
-  });
-
   if (!response.ok) {
     const message = await readErrorMessage(response);
     throwChatError(message, response.status);
@@ -117,14 +112,47 @@ async function streamWithModel(
   }
 }
 
+async function streamViaProxy(
+  messages: Message[],
+  onChunk: (chunk: string) => void,
+  signal?: AbortSignal
+): Promise<void> {
+  const response = await fetch(getChatEndpoint(), {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify(getChatProxyBody(messages, true)),
+    signal,
+  });
+  await readStreamResponse(response, onChunk);
+}
+
+async function streamWithModel(
+  model: string,
+  messages: Message[],
+  onChunk: (chunk: string) => void,
+  signal?: AbortSignal
+): Promise<void> {
+  const response = await fetch(getChatEndpoint(), {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify(getChatCompletionBody(model, messages, true)),
+    signal,
+  });
+  await readStreamResponse(response, onChunk);
+}
+
 export async function streamChatCompletion({
   messages,
-  model,
   onChunk,
   onRetry,
   signal,
 }: StreamChatOptions): Promise<void> {
-  const candidates = getChatModelCandidates(model);
+  if (usesServerSideFallback()) {
+    await streamViaProxy(messages, onChunk, signal);
+    return;
+  }
+
+  const candidates = getChatModelCandidates();
   let lastError: Error | null = null;
 
   for (let index = 0; index < candidates.length; index += 1) {

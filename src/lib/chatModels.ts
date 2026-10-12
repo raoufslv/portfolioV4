@@ -5,6 +5,11 @@ export const CHAT_MODELS = [
   "poolside/laguna-xs-2.1:free",
 ] as const;
 
+/** Single source of truth — not overridden by Netlify/Vercel env vars. */
+export function getPrimaryChatModel(): string {
+  return CHAT_MODELS[0];
+}
+
 export const CHAT_COMPLETION_OPTIONS = {
   max_tokens: 320,
   temperature: 0.5,
@@ -15,9 +20,8 @@ export const CHAT_COMPLETION_OPTIONS = {
   },
 } as const;
 
-export function getChatModelCandidates(preferred?: string): string[] {
-  const primary = preferred?.trim() || CHAT_MODELS[0];
-  return [...new Set([primary, ...CHAT_MODELS])];
+export function getChatModelCandidates(): string[] {
+  return [...CHAT_MODELS];
 }
 
 export function isRetryableChatError(status: number, message: string): boolean {

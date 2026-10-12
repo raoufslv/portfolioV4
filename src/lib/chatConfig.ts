@@ -1,10 +1,10 @@
-import { CHAT_COMPLETION_OPTIONS, CHAT_MODELS, getChatModelCandidates, isRetryableChatError } from "./chatModels";
+import {
+  CHAT_COMPLETION_OPTIONS,
+  getChatModelCandidates,
+  isRetryableChatError,
+} from "./chatModels";
 
 export { getChatModelCandidates, isRetryableChatError };
-
-export function getPrimaryChatModel(): string {
-  return import.meta.env.VITE_OPENROUTER_MODEL ?? CHAT_MODELS[0];
-}
 
 export function getChatCompletionBody(
   model: string,
@@ -17,4 +17,9 @@ export function getChatCompletionBody(
     stream,
     ...CHAT_COMPLETION_OPTIONS,
   };
+}
+
+/** Production proxy picks models server-side from CHAT_MODELS. */
+export function getChatProxyBody(messages: unknown[], stream: boolean) {
+  return { messages, stream };
 }

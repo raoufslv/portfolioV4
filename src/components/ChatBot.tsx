@@ -7,8 +7,6 @@ import { streamChatCompletion } from "./chat/streamChatCompletion";
 import { assistantSystemMessage } from "@/data/assistant-context";
 import { useChatWidget } from "@/context/ChatWidgetContext";
 
-import { getPrimaryChatModel } from "@/lib/chatConfig";
-
 interface Message {
   role: string;
   content: string;
@@ -83,7 +81,6 @@ export default function ChatBot() {
     try {
       await streamChatCompletion({
         messages: [assistantSystemMessage, ...updatedMessages],
-        model: getPrimaryChatModel(),
         onChunk: (chunk) => {
           setMessages((prev) => {
             const next = [...prev];
