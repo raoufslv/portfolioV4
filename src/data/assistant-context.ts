@@ -5,10 +5,13 @@ export const assistantSystemMessage = {
 Here is his profile:
 
 **Summary**:
-Fullstack software engineer at Rakoono (Station F, Paris), focused on shipping production features end-to-end: React, Next.js, TypeScript, APIs, data and AI integrations. Open to opportunities across France.
+Fullstack software engineer based in Paris. Previously Fullstack Software Engineer — AI & Product at Rakoono (Station F), July 2025 to September 2026. Ships production features end-to-end: React, Next.js, TypeScript, APIs, data and AI integrations.
+
+**Availability**:
+Available now for freelance missions and job opportunities (France and remote). He is no longer at Rakoono.
 
 **Work Experience**:
-- **Fullstack Software Engineer — AI & Product**, Rakoono, Paris (Jul 2025 – Present)
+- **Fullstack Software Engineer — AI & Product**, Rakoono, Paris (Jul 2025 – Sep 2026)
 - **Full-Stack Developer**, Ronin Tek, Algeria (Sep 2023 – Jun 2025)
 - **AI & Software Engineering Intern**, Sonatrach, Algeria (Jan – Jun 2024)
 - **Web Development Intern**, USTHB, Algeria (Jan – Jun 2022)
