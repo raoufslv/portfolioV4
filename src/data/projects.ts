@@ -86,6 +86,9 @@ import MGV10 from "@/assets/images/MGV pics/question-dark.png";
 import TixNovaApp2 from "@/assets/images/TixNova pics/tixnova-app.png";
 import TixNovaApp from "@/assets/images/TixNova pics/tixnova-app2.png";
 
+import MetreBa from "@/assets/images/metre-ba.png";
+import TournoiEchecs from "@/assets/images/tournoi-echecs.png";
+
 import DSADashboard from "@/assets/images/DSA pics/dashboard_full.png";
 import DSAQueryInterface from "@/assets/images/DSA pics/ai_query_interface.png";
 import DSAQueryResult from "@/assets/images/DSA pics/ai_query_result.png";
@@ -127,6 +130,27 @@ export const projectMeta: ProjectMeta[] = [
     demoUrl: 'https://www.cgvortex.com/',
     featured: true,
     accentColor: '#f97316',
+  },
+  {
+    id: 16,
+    title: 'Métré BA',
+    headerImage: MetreBa,
+    images: [MetreBa],
+    categories: ['web'],
+    technologies: ['React', 'TypeScript', 'Vite', 'Zustand', 'pdf.js', 'IndexedDB'],
+    codeUrl: 'https://github.com/raoufslv/metre-ba',
+    accentColor: '#0f766e',
+  },
+  {
+    id: 17,
+    title: "Tournoi d'échecs",
+    headerImage: TournoiEchecs,
+    images: [TournoiEchecs],
+    categories: ['web', 'game'],
+    technologies: ['Angular', 'Spring Boot', 'PostgreSQL', 'Kafka', 'Docker'],
+    demoUrl: 'http://15.235.244.32',
+    codeUrl: 'https://github.com/raoufslv/tournoi-echecs',
+    accentColor: '#14532d',
   },
   {
     id: 2,

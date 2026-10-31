@@ -73,4 +73,22 @@ export default {
     description:
       "Application mobile de billetterie électronique sécurisée par blockchain. React Native, smart contracts Ethereum (Hardhat) et prise en charge des portefeuilles Web3 (MetaMask).",
   },
+  "16": {
+    description:
+      "Application de métré béton armé dans le navigateur : ouvrir un plan PDF, étalonner l'échelle, tracer les éléments et obtenir béton (m³), coffrage (m²) et acier (kg), avec export CSV, Excel et PDF annoté. Tout reste en local.",
+    caseStudy: {
+      problem: "Chiffrer un logement en béton armé à partir d'un plan PDF, sans envoyer le plan sur un serveur.",
+      role: "Application cliente React — géométrie, quantités, étalonnage par page et exports.",
+      result: "Métré local (béton, coffrage, acier) avec exports Excel, CSV, JSON et PDF annoté.",
+    },
+  },
+  "17": {
+    description:
+      "Parties d'échecs en direct et tournoi suisse entre amis. Front Angular, API Spring Boot, PostgreSQL, événements Kafka et flux SSE pour les spectateurs.",
+    caseStudy: {
+      problem: "Jouer et suivre un tournoi d'échecs en direct, à plusieurs, sans recharger la page.",
+      role: "Full stack — règles et persistance (Spring Boot), temps réel (Kafka, SSE), interface Angular.",
+      result: "Parties en direct, historique rejouable et tournoi suisse (4 à 8 joueurs) déployés.",
+    },
+  },
 };

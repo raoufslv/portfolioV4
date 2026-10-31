@@ -16,7 +16,7 @@ Available now for freelance missions and job opportunities (France and remote). 
 - **AI & Software Engineering Intern**, Sonatrach, Algeria (Jan – Jun 2024)
 - **Web Development Intern**, USTHB, Algeria (Jan – Jun 2022)
 
-**Key Projects**: Rakoono, DSA Transparency Dashboard, CGVortex, TixNova
+**Key Projects**: Rakoono, DSA Transparency Dashboard, CGVortex, TixNova, Métré BA (in-browser reinforced-concrete takeoff on PDF plans, React and TypeScript), Tournoi d'échecs (live chess and Swiss tournament: Angular, Spring Boot, PostgreSQL, Kafka, SSE)
 
 **Stack**: React, Next.js, TypeScript, Node.js, PostgreSQL, Supabase, Vercel AI SDK, Docker, Playwright
 

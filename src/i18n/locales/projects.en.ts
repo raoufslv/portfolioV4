@@ -73,4 +73,22 @@ export default {
     description:
       "A mobile app for secure electronic ticketing using blockchain. Built with React Native, smart contracts on Ethereum (Hardhat) and Web3 wallet support (MetaMask).",
   },
+  "16": {
+    description:
+      "In-browser reinforced-concrete takeoff: open a PDF plan, calibrate the scale, trace structural elements and get concrete (m³), formwork (m²) and steel (kg), with CSV, Excel and annotated PDF export. Everything stays on the device.",
+    caseStudy: {
+      problem: "Price a reinforced-concrete dwelling from a PDF plan without uploading the drawing.",
+      role: "Client-side React app — geometry, quantities, per-page calibration and exports.",
+      result: "Local takeoff (concrete, formwork, steel) with Excel, CSV, JSON and annotated PDF exports.",
+    },
+  },
+  "17": {
+    description:
+      "Live chess games and a Swiss tournament for friends. Angular frontend, Spring Boot API, PostgreSQL, Kafka events and SSE for spectators.",
+    caseStudy: {
+      problem: "Play and follow a chess tournament live, with several people, without reloading the page.",
+      role: "Full stack — rules and persistence (Spring Boot), realtime (Kafka, SSE), Angular UI.",
+      result: "Live games, replayable history and a Swiss tournament (4 to 8 players), deployed.",
+    },
+  },
 };
