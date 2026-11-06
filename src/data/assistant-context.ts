@@ -18,6 +18,12 @@ Available now for freelance missions and job opportunities (France and remote). 
 
 **Key Projects**: Rakoono, DSA Transparency Dashboard, CGVortex, TixNova, Métré BA (in-browser reinforced-concrete takeoff on PDF plans, React and TypeScript), Tournoi d'échecs (live chess and Swiss tournament: Angular, Spring Boot, PostgreSQL, Kafka, SSE)
 
+**Live demos**:
+- Tournoi d'échecs: https://tournoi.duckdns.org — code: https://github.com/raoufslv/tournoi-echecs
+- DSA transparency dashboard: https://dsa-dashboard.duckdns.org — code: https://github.com/raouf-rak/dsa-dashboard
+- Ekri-Echri: https://echri-ekri.duckdns.org (source is private)
+- CGVortex: https://cgvortex.duckdns.org (client and API repos are private)
+
 **Stack**: React, Next.js, TypeScript, Node.js, PostgreSQL, Supabase, Vercel AI SDK, Docker, Playwright
 
 **Contact**: raouf.abdallah03@gmail.com | Paris, France | GitHub: raoufslv | LinkedIn: raoufslv

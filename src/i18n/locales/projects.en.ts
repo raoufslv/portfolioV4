@@ -19,7 +19,7 @@ export default {
     caseStudy: {
       problem: "Connect 3D creators and buyers on a dedicated marketplace for add-ons.",
       role: "Full-stack development — MERN stack, UI with Tailwind CSS, deployment.",
-      result: "Live marketplace serving 3D add-on listings at cgvortex.com.",
+      result: "Live marketplace serving 3D add-on listings at cgvortex.duckdns.org.",
     },
   },
   "2": {

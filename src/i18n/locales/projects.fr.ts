@@ -19,7 +19,7 @@ export default {
     caseStudy: {
       problem: "Connecter créateurs 3D et acheteurs sur une place de marché dédiée aux add-ons.",
       role: "Développement full stack — MERN, interface Tailwind CSS, déploiement.",
-      result: "Place de marché en ligne avec annonces d'add-ons 3D sur cgvortex.com.",
+      result: "Place de marché en ligne avec annonces d'add-ons 3D sur cgvortex.duckdns.org.",
     },
   },
   "2": {
