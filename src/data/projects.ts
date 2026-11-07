@@ -153,6 +153,7 @@ export const projectMeta: ProjectMeta[] = [
     images: [MetreBa],
     categories: ['web'],
     technologies: ['React', 'TypeScript', 'Vite', 'Zustand', 'pdf.js', 'IndexedDB'],
+    demoUrl: 'https://metre-ba.netlify.app/',
     codeUrl: 'https://github.com/raoufslv/metre-ba',
     accentColor: '#0f766e',
   },

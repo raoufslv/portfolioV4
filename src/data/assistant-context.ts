@@ -24,6 +24,7 @@ Available now for freelance missions and job opportunities (France and remote). 
 - Ekri-Echri: https://echri-ekri.duckdns.org (source is private)
 - CGVortex: https://cgvortex.duckdns.org (client and API repos are private)
 - Ronin Productions: https://ronin-productions.netlify.app/ — code: https://github.com/ronin-productions/portfolio
+- Métré BA: https://metre-ba.netlify.app/ — code: https://github.com/raoufslv/metre-ba
 
 **Stack**: React, Next.js, TypeScript, Node.js, PostgreSQL, Supabase, Vercel AI SDK, Docker, Playwright
 
