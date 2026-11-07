@@ -22,6 +22,15 @@ export default {
       result: "Place de marché en ligne avec annonces d'add-ons 3D sur cgvortex.duckdns.org.",
     },
   },
+  "18": {
+    description:
+      "Site vitrine de Ronin Tek Productions : galerie de réalisations filtrable (3D, VFX, audiovisuel), services du studio et formulaire de contact.",
+    caseStudy: {
+      problem: "Présenter les réalisations et les services du studio sur un seul site, avec un moyen direct de les contacter.",
+      role: "Développement du site — React, Vite, Tailwind CSS, animations Framer Motion et formulaire EmailJS.",
+      result: "Site en ligne avec galerie filtrable, grille de services et contact.",
+    },
+  },
   "2": {
     description:
       "Plateforme de location immobilière pour le marché algérien, développée en HTML, CSS (Bootstrap), JavaScript et PHP.",

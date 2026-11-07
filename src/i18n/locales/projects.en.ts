@@ -22,6 +22,15 @@ export default {
       result: "Live marketplace serving 3D add-on listings at cgvortex.duckdns.org.",
     },
   },
+  "18": {
+    description:
+      "Showcase site for Ronin Tek Productions: a filterable work gallery (3D, VFX, audiovisual), studio services and a contact form.",
+    caseStudy: {
+      problem: "Present the studio's work and services on one site, with a direct way to get in touch.",
+      role: "Built the site — React, Vite, Tailwind CSS, Framer Motion and an EmailJS contact form.",
+      result: "Live site with a filterable gallery, a services grid and contact.",
+    },
+  },
   "2": {
     description:
       "A house rental platform for the Algerian market, built with HTML, CSS (Bootstrap), JavaScript and PHP.",

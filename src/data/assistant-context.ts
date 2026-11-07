@@ -16,13 +16,14 @@ Available now for freelance missions and job opportunities (France and remote). 
 - **AI & Software Engineering Intern**, Sonatrach, Algeria (Jan – Jun 2024)
 - **Web Development Intern**, USTHB, Algeria (Jan – Jun 2022)
 
-**Key Projects**: Rakoono, DSA Transparency Dashboard, CGVortex, TixNova, Métré BA (in-browser reinforced-concrete takeoff on PDF plans, React and TypeScript), Tournoi d'échecs (live chess and Swiss tournament: Angular, Spring Boot, PostgreSQL, Kafka, SSE)
+**Key Projects**: Rakoono, DSA Transparency Dashboard, CGVortex, Ronin Productions (studio showcase for Ronin Tek: React, Vite, Tailwind CSS, Framer Motion), TixNova, Métré BA (in-browser reinforced-concrete takeoff on PDF plans, React and TypeScript), Tournoi d'échecs (live chess and Swiss tournament: Angular, Spring Boot, PostgreSQL, Kafka, SSE)
 
 **Live demos**:
 - Tournoi d'échecs: https://tournoi.duckdns.org — code: https://github.com/raoufslv/tournoi-echecs
 - DSA transparency dashboard: https://dsa-dashboard.duckdns.org — code: https://github.com/raouf-rak/dsa-dashboard
 - Ekri-Echri: https://echri-ekri.duckdns.org (source is private)
 - CGVortex: https://cgvortex.duckdns.org (client and API repos are private)
+- Ronin Productions: https://ronin-productions.netlify.app/ — code: https://github.com/ronin-productions/portfolio
 
 **Stack**: React, Next.js, TypeScript, Node.js, PostgreSQL, Supabase, Vercel AI SDK, Docker, Playwright
 

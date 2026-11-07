@@ -89,6 +89,10 @@ import TixNovaApp from "@/assets/images/TixNova pics/tixnova-app2.png";
 import MetreBa from "@/assets/images/metre-ba.png";
 import TournoiEchecs from "@/assets/images/tournoi-echecs.png";
 
+import RoninHero from "@/assets/images/Ronin pics/hero.png";
+import RoninServices from "@/assets/images/Ronin pics/services.png";
+import RoninAbout from "@/assets/images/Ronin pics/about.png";
+
 import DSADashboard from "@/assets/images/DSA pics/dashboard_full.png";
 import DSAQueryInterface from "@/assets/images/DSA pics/ai_query_interface.png";
 import DSAQueryResult from "@/assets/images/DSA pics/ai_query_result.png";
@@ -130,6 +134,17 @@ export const projectMeta: ProjectMeta[] = [
     demoUrl: 'https://cgvortex.duckdns.org',
     featured: true,
     accentColor: '#f97316',
+  },
+  {
+    id: 18,
+    title: 'Ronin Productions',
+    headerImage: RoninHero,
+    images: [RoninHero, RoninServices, RoninAbout],
+    categories: ['web', 'design'],
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'EmailJS'],
+    demoUrl: 'https://ronin-productions.netlify.app/',
+    codeUrl: 'https://github.com/ronin-productions/portfolio',
+    accentColor: '#7c3aed',
   },
   {
     id: 16,
